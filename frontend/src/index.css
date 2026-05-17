@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-medical-blue text-slate-100 antialiased;
+  }
+}
+
+@layer utilities {
+  .glass-panel {
+    @apply bg-medical-blue-800/40 backdrop-blur-md border border-cyan-neon/20 shadow-lg shadow-cyan-neon/5 rounded-xl;
+  }
+  
+  .glass-input {
+    @apply w-full bg-medical-blue-900/50 border border-medical-blue-600 rounded-lg px-4 py-2 text-slate-100 placeholder:text-slate-500 focus:outline-none focus:border-cyan-neon focus:ring-1 focus:ring-cyan-neon transition-all duration-200;
+  }
+
+  .glow-text {
+    text-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
+  }
+}
