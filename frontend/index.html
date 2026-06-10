@@ -1,13 +1,608 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>jantung-ai</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="CARDIOCARE — Sistem Pendukung Keputusan Deteksi Dini Risiko Penyakit Jantung berbasis Decision Tree. RSU Aulia Jakarta Selatan.">
+  <title>CARDIOCARE — SPK Deteksi Dini Risiko Penyakit Jantung</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+</head>
+<body>
+
+<!-- LOGIN OVERLAY -->
+<div class="login-overlay" id="loginOverlay">
+  <div class="login-container">
+    <div class="login-brand">
+      <div class="brand-icon heartbeat" style="width:56px;height:56px">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/><path d="M3.22 12H9.5l.5-1 2 4.5 2-7 1.5 3.5h5.27"/></svg>
+      </div>
+      <h1 style="font-family:'Poppins',sans-serif;font-size:28px;font-weight:800;color:#DC2626;margin-top:16px">CARDIOCARE</h1>
+      <p style="color:#64748B;font-size:13px;margin-top:4px">SPK Deteksi Dini Risiko Penyakit Jantung</p>
+    </div>
+    <form class="login-form" id="loginForm">
+      <div class="form-group">
+        <label class="form-label">Username</label>
+        <input type="text" class="form-input" id="loginUsername" placeholder="Masukkan username" required autocomplete="username">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Password</label>
+        <input type="password" class="form-input" id="loginPassword" placeholder="Masukkan password" required autocomplete="current-password">
+      </div>
+      <div id="loginError" style="display:none;padding:10px 14px;background:#FEF2F2;color:#DC2626;border-radius:8px;font-size:13px;margin-bottom:12px"></div>
+      <button type="submit" class="btn btn-primary btn-lg btn-block" id="loginBtn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:20px;height:20px"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>
+        Masuk
+      </button>
+    </form>
+    <div class="login-footer">
+      <p>RSU Aulia — Sistem Informasi SPK Jantung</p>
+    </div>
+  </div>
+</div>
+
+<div class="app" id="appContainer" style="display:none">
+  <!-- ═══ SIDEBAR ═══ -->
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-brand">
+      <div class="brand-icon heartbeat">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/><path d="M3.22 12H9.5l.5-1 2 4.5 2-7 1.5 3.5h5.27"/></svg>
+      </div>
+      <div class="brand-text">
+        <h1>CARDIOCARE</h1>
+        <span>SPK Deteksi Dini Risiko Jantung</span>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <div class="nav-section">
+        <div class="nav-section-label">SPK Deteksi Jantung</div>
+        <a class="nav-item active" data-page="dashboard">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+          Dashboard
+        </a>
+        <a class="nav-item" data-page="prediksi">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+          Prediksi Risiko
+          <span class="nav-badge">SPK</span>
+        </a>
+        <a class="nav-item" data-page="pasien">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          Data Pasien
+        </a>
+        <a class="nav-item" data-page="rekammedis">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M10 12H8"/><path d="M16 17H8"/><path d="M16 12h-2"/></svg>
+          Rekam Medis
+        </a>
+        <a class="nav-item" data-page="ekg">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+          Pemeriksaan EKG
+        </a>
+        <a class="nav-item" data-page="laporan">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg>
+          Laporan
+        </a>
+      </div>
+
+      <div class="nav-section" id="navOwnerSection" style="display:none">
+        <div class="nav-section-label">Administrasi</div>
+        <a class="nav-item" data-page="akundokter">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M19 8v6"/><path d="M22 11h-6"/></svg>
+          Akun Dokter
+          <span class="nav-badge" style="background:#7C3AED">Owner</span>
+        </a>
+      </div>
+    </nav>
+  </aside>
+
+  <!-- ═══ MAIN ═══ -->
+  <div class="main">
+    <!-- ─── HEADER ─── -->
+    <header class="header">
+      <div class="header-left">
+        <button class="menu-toggle" id="menuToggle">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+        <div class="header-search">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input type="text" placeholder="Cari pasien berdasarkan No. RM..." id="globalSearch">
+        </div>
+      </div>
+      <div class="header-right">
+        <div class="header-datetime">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>
+          <span id="headerDate">-</span>
+          <span class="time" id="headerTime">--:--:--</span>
+        </div>
+        <div class="system-status">
+          <span class="status-dot"></span>
+          Online
+        </div>
+        <div class="header-avatar" id="headerAvatar" title="Logout" onclick="doLogout()" style="cursor:pointer">
+          <span id="avatarInitials">AD</span>
+        </div>
+        <button class="btn btn-outline btn-sm" onclick="doLogout()" id="logoutBtn" style="margin-left:4px">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+          Logout
+        </button>
+      </div>
+    </header>
+
+    <!-- ─── CONTENT ─── -->
+    <div class="content">
+
+      <!-- ════════════════════ DASHBOARD PAGE ════════════════════ -->
+      <div class="page active" id="page-dashboard">
+        <div class="page-header">
+          <div>
+            <h2>Dashboard Monitoring</h2>
+            <p>Sistem Pendukung Keputusan Deteksi Dini Risiko Penyakit Jantung — RSU Aulia</p>
+          </div>
+        </div>
+
+        <!-- ECG Banner -->
+        <div class="ecg-container" style="margin-bottom:24px">
+          <canvas id="ecgBanner"></canvas>
+        </div>
+
+        <!-- Stats (Data Riil dari dataset_cleaned.csv) -->
+        <div class="stats-grid">
+          <div class="stat-card red">
+            <div class="stat-icon red">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+            <div class="stat-content">
+              <div class="stat-label">Total Pasien</div>
+              <div class="stat-value" id="statTotalPasien">--</div>
+              <div class="stat-trend up"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m18 15-6-6-6 6"/></svg> Data Riil</div>
+            </div>
+          </div>
+          <div class="stat-card blue">
+            <div class="stat-icon red">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+            </div>
+            <div class="stat-content">
+              <div class="stat-label">Risiko Jantung</div>
+              <div class="stat-value" id="statRisiko">--</div>
+              <div class="stat-trend down" id="statPctRisiko">--%</div>
+            </div>
+          </div>
+          <div class="stat-card green">
+            <div class="stat-icon green">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            </div>
+            <div class="stat-content">
+              <div class="stat-label">Normal</div>
+              <div class="stat-value" id="statNormal">--</div>
+              <div class="stat-trend up"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m18 15-6-6-6 6"/></svg> Data Riil</div>
+            </div>
+          </div>
+          <div class="stat-card violet">
+            <div class="stat-icon blue">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+            </div>
+            <div class="stat-content">
+              <div class="stat-label">Laki-laki</div>
+              <div class="stat-value" id="statLaki">--</div>
+              <div class="stat-trend up"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m18 15-6-6-6 6"/></svg> Data Riil</div>
+            </div>
+          </div>
+          <div class="stat-card amber">
+            <div class="stat-icon violet">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+            </div>
+            <div class="stat-content">
+              <div class="stat-label">Perempuan</div>
+              <div class="stat-value" id="statPerempuan">--</div>
+              <div class="stat-trend up"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m18 15-6-6-6 6"/></svg> Data Riil</div>
+            </div>
+          </div>
+          <div class="stat-card red">
+            <div class="stat-icon warm">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+            </div>
+            <div class="stat-content">
+              <div class="stat-label">Keluhan Sesak/Dada</div>
+              <div class="stat-value" id="statSesak">--</div>
+              <div class="stat-trend down"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg> Data Riil</div>
+            </div>
+          </div>
+          <div class="stat-card blue">
+            <div class="stat-icon amber">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            </div>
+            <div class="stat-content">
+              <div class="stat-label">Rata-rata Usia</div>
+              <div class="stat-value" id="statAvgUsia">--</div>
+              <div class="stat-trend up"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m18 15-6-6-6 6"/></svg> Data Riil</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Charts Row -->
+        <div class="grid-2">
+          <div class="card">
+            <div class="card-header">
+              <h3>Distribusi Usia & Risiko Jantung</h3>
+              <span class="badge info">Data Riil</span>
+            </div>
+            <div class="card-body">
+              <div class="chart-container" style="height:260px"><canvas id="chartHeartRate"></canvas></div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">
+              <h3>Distribusi BMI Pasien</h3>
+              <span class="badge neutral">Data Riil</span>
+            </div>
+            <div class="card-body">
+              <div class="chart-container" style="height:260px"><canvas id="chartMonthly"></canvas></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <div class="card">
+            <div class="card-header">
+              <h3>Distribusi Tekanan Darah</h3>
+              <span class="badge neutral">Data Riil</span>
+            </div>
+            <div class="card-body">
+              <div class="chart-container" style="height:260px"><canvas id="chartDisease"></canvas></div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">
+              <h3>Risiko Jantung per Gender</h3>
+              <span class="badge info">Data Riil</span>
+            </div>
+            <div class="card-body">
+              <div class="chart-container" style="height:260px"><canvas id="chartBed"></canvas></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ════════════════════ PREDIKSI PAGE ════════════════════ -->
+      <div class="page" id="page-prediksi">
+        <div class="page-header">
+          <div>
+            <h2>Prediksi Risiko Penyakit Jantung</h2>
+            <p>Sistem Pendukung Keputusan berbasis Decision Tree — RSU Aulia</p>
+          </div>
+          <span class="badge info" style="font-size:13px;padding:6px 14px">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+            Model Accuracy: <span id="modelAccBadge">-</span>
+          </span>
+        </div>
+
+        <div class="grid-2">
+          <!-- Form -->
+          <div class="card">
+            <div class="card-header">
+              <h3>Input Data Pasien</h3>
+            </div>
+            <div class="card-body">
+              <form id="prediksiForm">
+                <div class="form-grid">
+                  <div class="form-group">
+                    <label class="form-label">Usia <span>(tahun)</span></label>
+                    <input type="number" class="form-input" id="inputUsia" min="0" max="120" step="0.1" placeholder="Contoh: 55.3" required>
+                    <div class="form-hint">Rentang: 0 – 120 tahun</div>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">BMI <span>(kg/m²)</span></label>
+                    <input type="number" class="form-input" id="inputBmi" min="1" max="100" step="0.01" placeholder="Contoh: 27.5" required>
+                    <div class="form-hint">Rentang: 1.00 – 100.00</div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Jenis Kelamin</label>
+                  <div class="form-radio-group">
+                    <label class="form-radio" data-value="0" onclick="selectRadio(this,'gender')">
+                      <input type="radio" name="gender" value="0">
+                      <span class="form-radio-dot"></span>
+                      Laki-laki
+                    </label>
+                    <label class="form-radio" data-value="1" onclick="selectRadio(this,'gender')">
+                      <input type="radio" name="gender" value="1">
+                      <span class="form-radio-dot"></span>
+                      Perempuan
+                    </label>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Keluhan Sesak Napas / Nyeri Dada</label>
+                  <div class="form-radio-group">
+                    <label class="form-radio" data-value="0" onclick="selectRadio(this,'sesak')">
+                      <input type="radio" name="sesak" value="0">
+                      <span class="form-radio-dot"></span>
+                      Tidak Ada
+                    </label>
+                    <label class="form-radio" data-value="1" onclick="selectRadio(this,'sesak')">
+                      <input type="radio" name="sesak" value="1">
+                      <span class="form-radio-dot"></span>
+                      Ada
+                    </label>
+                  </div>
+                </div>
+                <div class="form-grid">
+                  <div class="form-group">
+                    <label class="form-label">Sistolik <span>(mmHg)</span></label>
+                    <input type="number" class="form-input" id="inputSistolik" min="50" max="300" placeholder="Contoh: 140" required>
+                    <div class="form-hint">Rentang: 50 – 300 mmHg</div>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Diastolik <span>(mmHg)</span></label>
+                    <input type="number" class="form-input" id="inputDiastolik" min="30" max="200" placeholder="Contoh: 90" required>
+                    <div class="form-hint">Rentang: 30 – 200 mmHg</div>
+                  </div>
+                </div>
+                <button type="submit" class="btn btn-primary btn-lg btn-block" style="margin-top:8px">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:20px;height:20px"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+                  Analisis Risiko Jantung
+                </button>
+              </form>
+            </div>
+          </div>
+
+          <!-- Result -->
+          <div id="prediksiResult">
+            <div class="card" style="height:100%;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:60px 40px;text-align:center">
+              <div style="width:80px;height:80px;background:var(--accent-light);border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:20px">
+                <svg viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" style="width:36px;height:36px"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/><path d="M3.22 12H9.5l.5-1 2 4.5 2-7 1.5 3.5h5.27"/></svg>
+              </div>
+              <h3 style="font-family:'Poppins',sans-serif;font-size:18px;font-weight:700;margin-bottom:8px;color:var(--text)">Masukkan Data Pasien</h3>
+              <p style="color:var(--text-muted);font-size:14px;max-width:300px">Isi formulir di sebelah kiri untuk mendapatkan prediksi risiko penyakit jantung menggunakan model Decision Tree</p>
+              <div style="margin-top:24px;padding:14px 20px;background:var(--bg);border-radius:var(--radius);display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text-secondary)">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px;flex-shrink:0"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+                Alat bantu skrining, bukan pengganti diagnosis medis
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ════════════════════ DATA PASIEN PAGE ════════════════════ -->
+      <div class="page" id="page-pasien">
+        <div class="page-header">
+          <div>
+            <h2>Data Pasien</h2>
+            <p>Data riil dari dataset_cleaned.csv — <span id="tableInfo" style="font-weight:600;color:var(--primary)"></span></p>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-body" style="padding-bottom:0">
+            <div class="toolbar">
+              <div class="search-box">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                <input type="text" placeholder="Cari No. RM..." id="searchPasien">
+              </div>
+              <select class="form-select" id="filterGender" style="width:140px;padding:8px 12px;font-size:13px">
+                <option value="">Semua Gender</option>
+                <option value="0">Laki-laki</option>
+                <option value="1">Perempuan</option>
+              </select>
+              <select class="form-select" id="filterRisiko" style="width:150px;padding:8px 12px;font-size:13px">
+                <option value="">Semua Status</option>
+                <option value="1">Risiko Jantung</option>
+                <option value="0">Normal</option>
+              </select>
+            </div>
+          </div>
+          <div class="table-container">
+            <table class="data-table" id="tablePasien">
+              <thead>
+                <tr>
+                  <th>No. RM</th>
+                  <th>Usia</th>
+                  <th>Gender</th>
+                  <th>Sesak/Dada</th>
+                  <th>BMI</th>
+                  <th>TD (mmHg)</th>
+                  <th>Status Risiko</th>
+                  <th>Aksi</th>
+                </tr>
+              </thead>
+              <tbody id="tbodyPasien"></tbody>
+            </table>
+          </div>
+          <div class="pagination" id="paginationPasien"></div>
+        </div>
+      </div>
+
+      <!-- ════════════════════ EKG PAGE ════════════════════ -->
+      <div class="page" id="page-ekg">
+        <div class="page-header">
+          <div>
+            <h2>Pemeriksaan EKG</h2>
+            <p>Monitoring elektrokardiogram pasien</p>
+          </div>
+        </div>
+        <div class="ekg-grid" id="ekgGrid"></div>
+      </div>
+
+      <!-- ════════════════════ REKAM MEDIS PAGE ════════════════════ -->
+      <div class="page" id="page-rekammedis">
+        <div class="page-header">
+          <div>
+            <h2>Rekam Medis Elektronik</h2>
+            <p>Electronic Medical Record (EMR) terintegrasi — data riil dari dataset</p>
+          </div>
+          <div style="display:flex;gap:10px;align-items:center">
+            <select class="form-select" id="emrPatientSelect" style="width:240px;padding:8px 12px;font-size:13px">
+              <option value="">Pilih Pasien...</option>
+            </select>
+            <button class="btn btn-primary btn-sm" onclick="loadEMRData()">Muat Data</button>
+          </div>
+        </div>
+        <div id="emrContent">
+          <div class="empty-state">
+            <div class="empty-state-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/></svg>
+            </div>
+            <h4>Pilih Pasien</h4>
+            <p>Pilih pasien dari dropdown di atas untuk menampilkan rekam medis elektronik</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ════════════════════ LAPORAN PAGE ════════════════════ -->
+      <div class="page" id="page-laporan">
+        <div class="page-header">
+          <div>
+            <h2>Laporan & Statistik</h2>
+            <p>Statistik dataset risiko penyakit jantung — data riil 27.817 pasien</p>
+          </div>
+          <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+            <input type="date" class="form-input" id="lapDateFrom" style="width:160px;padding:8px 12px;font-size:13px" value="2026-06-01">
+            <span style="color:var(--text-muted)">s/d</span>
+            <input type="date" class="form-input" id="lapDateTo" style="width:160px;padding:8px 12px;font-size:13px" value="2026-06-10">
+            <button class="btn btn-outline btn-sm" onclick="exportPDF()">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6"/></svg>
+              Export PDF
+            </button>
+            <button class="btn btn-outline btn-sm" onclick="exportExcel()">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18"/><path d="M3 9h6"/><path d="M3 15h6"/></svg>
+              Export Excel
+            </button>
+            <button class="btn btn-outline btn-sm" onclick="exportCSV()">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Export CSV
+            </button>
+          </div>
+        </div>
+        <div class="stats-grid" style="grid-template-columns:repeat(4,1fr)">
+          <div class="stat-card green"><div class="stat-icon green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div><div class="stat-content"><div class="stat-label">Total Pasien</div><div class="stat-value" id="lapTotalPasien">--</div><div class="stat-trend up"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m18 15-6-6-6 6"/></svg> Data Riil</div></div></div>
+          <div class="stat-card blue"><div class="stat-icon red"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg></div><div class="stat-content"><div class="stat-label">Risiko Jantung</div><div class="stat-value" id="lapRisiko">--</div><div class="stat-trend down">Data Riil</div></div></div>
+          <div class="stat-card amber"><div class="stat-icon warm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div><div class="stat-content"><div class="stat-label">Keluhan Sesak/Dada</div><div class="stat-value" id="lapSesak">--</div><div class="stat-trend down">Data Riil</div></div></div>
+          <div class="stat-card red"><div class="stat-icon amber"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/></svg></div><div class="stat-content"><div class="stat-label">Rata-rata BMI</div><div class="stat-value" id="lapAvgBMI">--</div><div class="stat-trend up">Data Riil</div></div></div>
+        </div>
+        <div class="grid-2">
+          <div class="card"><div class="card-header"><h3>Pasien per Kelompok Usia</h3><span class="badge info">Data Riil</span></div><div class="card-body"><div class="chart-container" style="height:260px"><canvas id="chartLaporan1"></canvas></div></div></div>
+          <div class="card"><div class="card-header"><h3>Distribusi Tekanan Darah</h3><span class="badge info">Data Riil</span></div><div class="card-body"><div class="chart-container" style="height:260px"><canvas id="chartLaporan2"></canvas></div></div></div>
+        </div>
+      </div>
+
+
+
+      <!-- ═══════════════════ AKUN DOKTER PAGE (Owner Only) ═══════════════════ -->
+      <div class="page" id="page-akundokter">
+        <div class="page-header">
+          <div>
+            <h2>Manajemen Akun Dokter</h2>
+            <p>Kelola akun dokter yang dapat mengakses sistem CARDIOCARE</p>
+          </div>
+          <button class="btn btn-primary btn-sm" onclick="showAddDoctorModal()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg>
+            Tambah Dokter
+          </button>
+        </div>
+
+        <!-- Summary Stats -->
+        <div class="stats-grid" style="grid-template-columns:repeat(3,1fr);margin-bottom:24px">
+          <div class="stat-card violet">
+            <div class="stat-icon violet">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M19 8v6"/><path d="M22 11h-6"/></svg>
+            </div>
+            <div class="stat-content">
+              <div class="stat-label">Total Dokter</div>
+              <div class="stat-value" id="statTotalDokter">--</div>
+            </div>
+          </div>
+          <div class="stat-card green">
+            <div class="stat-icon green">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            </div>
+            <div class="stat-content">
+              <div class="stat-label">Role</div>
+              <div class="stat-value" style="font-size:18px">Dokter</div>
+              <div class="stat-trend up">Akses semua fitur SPK</div>
+            </div>
+          </div>
+          <div class="stat-card blue">
+            <div class="stat-icon blue">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/></svg>
+            </div>
+            <div class="stat-content">
+              <div class="stat-label">Akses Owner</div>
+              <div class="stat-value" style="font-size:18px">Full CRUD</div>
+              <div class="stat-trend up">Kelola akun dokter</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Doctor Cards Grid -->
+        <div class="doctor-grid" id="doctorGrid">
+          <div class="empty-state">
+            <div class="empty-state-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+            </div>
+            <h4>Memuat data dokter...</h4>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /content -->
+  </div><!-- /main -->
+</div><!-- /app -->
+
+<!-- Toast Container -->
+<div class="toast-container" id="toastContainer"></div>
+
+<!-- Modal Detail Pasien -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal">
+    <div class="modal-header">
+      <h3>Detail Pasien</h3>
+      <button class="modal-close" onclick="closeModal()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
+</div>
+
+<!-- Modal Add/Edit Doctor -->
+<div class="modal-overlay" id="doctorModalOverlay">
+  <div class="modal">
+    <div class="modal-header">
+      <h3 id="doctorModalTitle">Tambah Dokter</h3>
+      <button class="modal-close" onclick="closeDoctorModal()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form id="doctorForm">
+        <input type="hidden" id="doctorEditId">
+        <div class="form-group">
+          <label class="form-label">Username</label>
+          <input type="text" class="form-input" id="doctorUsername" placeholder="Contoh: dokter_ani" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Nama Lengkap</label>
+          <input type="text" class="form-input" id="doctorName" placeholder="Contoh: dr. Ani Sulistyawati, Sp.JP" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Password <span id="doctorPwdHint">(min 6 karakter)</span></label>
+          <input type="password" class="form-input" id="doctorPassword" placeholder="Masukkan password" required>
+        </div>
+        <div id="doctorFormError" style="display:none;padding:10px 14px;background:#FEF2F2;color:#DC2626;border-radius:8px;font-size:13px;margin-bottom:12px"></div>
+        <div style="display:flex;gap:10px;margin-top:8px">
+          <button type="submit" class="btn btn-primary btn-block">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:18px;height:18px"><polyline points="20 6 9 17 4 12"/></svg>
+            <span id="doctorSubmitLabel">Simpan</span>
+          </button>
+          <button type="button" class="btn btn-outline" onclick="closeDoctorModal()">Batal</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script src="js/model.js"></script>
+<script src="js/app.js"></script>
+</body>
 </html>

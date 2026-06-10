@@ -1,0 +1,110 @@
+=================================================================
+LAPORAN PREPROCESSING DATASET v2
+SPK Deteksi Dini Risiko Penyakit Jantung — RSU Aulia
+Disesuaikan dengan BAB 1 Skripsi
+=================================================================
+
+INPUT
+  File     : Mas Sendi Glukosa Final-Sheet1.csv
+  Baris    : 31638
+  Kolom    : 10 kolom data + 19 kolom kosong
+
+OUTPUT
+  File     : dataset_cleaned.csv
+  Baris    : 27817
+  Kolom    : 7 (6 fitur + 1 target)
+  Ukuran   : 697.8 KB
+
+-----------------------------------------------------------------
+KOLOM YANG DI-DROP (SESUAI RUANG LINGKUP SKRIPSI)
+-----------------------------------------------------------------
+  - bmi_result     : Redundan (sudah dicakup oleh BMI numerik)
+  - glukosa_puasa  : 99.3% kosong, tidak ada di spesifikasi
+  - glukosa_sewaktu: 91.7% kosong, tidak ada di spesifikasi
+  - hba1c          : 99.4% kosong, tidak ada di spesifikasi
+  - diagnosa       : Digunakan untuk labeling, lalu di-drop
+  - 19 kolom kosong (index 10-28)
+
+-----------------------------------------------------------------
+FITUR YANG DIEKSTRAK
+-----------------------------------------------------------------
+  - keluhanawal → keluhanawal_sesak_dada (binary)
+    Keyword: sesak, sesek, nafas berat, ngos-ngos,
+             nyeri dada, dada sakit, dada nyeri, chest pain
+  - usia: 'XX Th YY Bl ZZ Hr' → float (tahun)
+  - tekanan_darah: 'sistolik/diastolik' → 2 kolom int
+  - gender: Laki-laki=0, Perempuan=1
+  - diagnosa → risiko_jantung: ICD I10-I79 = 1, lainnya = 0
+
+-----------------------------------------------------------------
+BARIS YANG DI-DROP
+-----------------------------------------------------------------
+  Total baris di-drop: 3821
+    - bmi_extreme         :    191
+    - bmi_non_numeric     :      1
+    - bmi_zero            :   1991
+    - td_anomali          :     83
+    - td_one              :    521
+    - td_zero             :     17
+    - usia_empty          :   1017
+
+-----------------------------------------------------------------
+STRUKTUR OUTPUT (SESUAI BAB 1 SKRIPSI)
+-----------------------------------------------------------------
+  No   Kolom                      Tipe     Deskripsi
+  --   -------------------------- -------- ------------------------------
+  1    usia                       float    Usia pasien (tahun)
+  2    gender                     int      0=Laki-laki, 1=Perempuan
+  3    keluhanawal_sesak_dada     int      1=sesak/nyeri dada, 0=tidak
+  4    bmi                        float    Indeks Massa Tubuh (kg/m²)
+  5    sistolik                   int      Tekanan darah sistolik (mmHg)
+  6    diastolik                  int      Tekanan darah diastolik (mmHg)
+  T    risiko_jantung             int      TARGET: 0=Tidak, 1=Ya
+
+-----------------------------------------------------------------
+STATISTIK DESKRIPTIF
+-----------------------------------------------------------------
+  bmi         : min=    0.62  max=   99.13  mean=   24.13  median=   23.43  stdev=    5.60
+  usia        : min=    0.00  max=   92.15  mean=   46.47  median=   50.48  stdev=   19.93
+  sistolik    : min=   58.00  max=  288.00  mean=  125.60  median=  123.00  stdev=   21.53
+  diastolik   : min=    0.00  max=  183.00  mean=   80.28  median=   80.00  stdev=   12.06
+
+-----------------------------------------------------------------
+DISTRIBUSI LABEL TARGET
+-----------------------------------------------------------------
+  Risiko jantung (1):   3522 (12.7%)
+  Tidak risiko   (0):  24295 (87.3%)
+  Rasio              : 1:6.9
+
+-----------------------------------------------------------------
+DISTRIBUSI KELUHAN SESAK/NYERI DADA
+-----------------------------------------------------------------
+  Ada keluhan    (1):    831 (3.0%)
+  Tidak ada      (0):  26986 (97.0%)
+  Sesak + Risiko    :    202 (24.3% dari pasien sesak)
+
+-----------------------------------------------------------------
+DISTRIBUSI GENDER
+-----------------------------------------------------------------
+  Laki-laki (0):  10321 (37.1%)
+  Perempuan (1):  17496 (62.9%)
+
+-----------------------------------------------------------------
+PREVIEW 10 BARIS PERTAMA
+-----------------------------------------------------------------
+     usia  gdr sesak     bmi  sist diast risiko
+    55.33    1     0   28.65   132    78      0
+    59.91    0     0   16.60   154    83      0
+    47.25    0     0   24.63   124    86      0
+    42.87    0     0   21.97   132    78      0
+    74.19    0     0   22.14   152    57      0
+    60.42    1     0   20.44   209   102      0
+    45.97    0     0   23.87   154    92      0
+    52.50    1     0   17.82   175    91      0
+    56.81    0     0   19.86   188   111      0
+    56.46    1     0   15.39   166    69      0
+
+=================================================================
+Preprocessing v2 selesai. Dataset siap untuk pemodelan
+Decision Tree sesuai spesifikasi skripsi.
+=================================================================

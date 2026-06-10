@@ -1,0 +1,141 @@
+BAB 3
+METODE PENELITIAN
+
+3.1 Jenis Penelitian
+    Penelitian ini menggunakan pendekatan kuantitatif dengan metode
+    eksperimen dalam pengembangan sistem pendukung keputusan (SPK)
+    untuk deteksi dini risiko penyakit jantung. Metode yang digunakan
+    adalah algoritma klasifikasi Decision Tree dengan kriteria entropy
+    (Information Gain) yang diimplementasikan dalam aplikasi berbasis web.
+
+3.2 Lokasi dan Waktu Penelitian
+    Penelitian dilaksanakan di Rumah Sakit Umum (RSU) Aulia, yang berlokasi
+    di Jagakarsa, Jakarta Selatan. Waktu penelitian dilaksanakan pada
+    bulan Mei hingga Juni 2026.
+
+3.3 Populasi dan Sampel
+    3.3.1 Populasi
+        Populasi dalam penelitian ini adalah seluruh data rekam medis pasien
+        RSU Aulia yang tersimpan dalam dataset, berjumlah 31.638 rekord.
+
+    3.3.2 Sampel
+        Sampel yang digunakan adalah data yang telah melewati proses data
+        cleaning, menghasilkan 27.817 rekord dengan 6 fitur prediktor dan
+        1 variabel target (risiko_jantung).
+
+3.4 Variabel Penelitian
+    3.4.1 Variabel Prediktor (Fitur)
+        1. Usia (tahun) — numerik, rentang 0-120
+        2. Gender — kategorik (0=Laki-laki, 1=Perempuan)
+        3. Keluhanawal Sesak Dada — biner (0=Tidak, 1=Ya)
+        4. BMI (kg/m2) — numerik, rentang 1-100
+        5. Sistolik (mmHg) — numerik
+        6. Diastolik (mmHg) — numerik
+
+    3.4.2 Variabel Target
+        Risiko Jantung — biner (0=Tidak Risiko, 1=Risiko)
+        Ditentukan berdasarkan diagnosa ICD-10 kode I10-I79.
+
+3.5 Teknik Pengumpulan Data
+    Data diperoleh dari rekam medis elektronik RSU Aulia dalam bentuk
+    berkas CSV (Mas Sendi Glukosa Final-Sheet1.csv). Data mencakup
+    keluhan awal, BMI, usia, tekanan darah, dan diagnosa pasien.
+
+3.6 Tahapan Penelitian
+    Tahapan penelitian dilaksanakan secara sistematis sebagai berikut:
+
+    3.6.1 Studi Literatur
+        Mengkaji literatur terkait Decision Tree, SPK, penyakit jantung,
+        dan penelitian terdahulu yang relevan.
+
+    3.6.2 Pengumpulan Data
+        Mengumpulkan dataset rekam medis dari RSU Aulia.
+
+    3.6.3 Preprocessing Data
+        a. Drop kolom kosong dan tidak relevan
+        b. Parsing usia dari format teks ke numerik
+        c. Split tekanan darah menjadi sistolik/diastolik
+        d. Ekstraksi fitur keluhan sesak dada
+        e. Penentuan label target berdasarkan ICD-10
+        f. Penanganan missing values dan anomali data
+
+    3.6.4 Pemodelan Decision Tree
+        a. Pembagian data: 80% training, 20% testing (stratified)
+        b. Konfigurasi parameter:
+           - Criterion: entropy
+           - Max depth: 7
+           - Min samples split: 30
+           - Min samples leaf: 15
+           - Class weight: balanced
+        c. Training model menggunakan scikit-learn
+        d. Cross-validation 10-fold stratified
+
+    3.6.5 Evaluasi Model
+        Metrik evaluasi:
+        a. Accuracy — ketepatan klasifikasi keseluruhan
+        b. Precision — ketepatan prediksi positif
+        c. Recall — kemampuan deteksi kasus positif (prioritas utama)
+        d. F1-Score — harmonic mean precision dan recall
+        e. ROC-AUC — area under ROC curve
+        f. Confusion Matrix — analisis TP, TN, FP, FN
+
+    3.6.6 Implementasi Sistem
+        a. Backend: Flask (Python) — REST API
+        b. Frontend: HTML5, CSS3, JavaScript (responsive)
+        c. Model: Decision Tree (client-side + server-side)
+        d. Database: CSV dataset (27.817 pasien)
+
+    3.6.7 Pengujian Sistem
+        a. Verifikasi seluruh endpoint API
+        b. Testing prediksi model di browser
+        c. Responsiveness di berbagai ukuran layar
+        d. Validasi data riil vs dummy
+
+3.7 Arsitektur Sistem
+    Sistem CARDIOCARE menggunakan arsitektur client-server:
+
+    [User/Browser] <--> [Frontend: HTML/CSS/JS]
+                              |
+                         [REST API]
+                              |
+                    [Backend: Flask Server]
+                         /         \
+            [Model: Decision Tree]  [Data: CSV 27.817 pasien]
+
+    Komponen:
+    1. Frontend — Dashboard monitoring, form prediksi, data pasien,
+       rekam medis, laporan, dan visualisasi
+    2. REST API — Endpoint untuk stats, patients, predict, report, export
+    3. Backend — Flask server yang memproses request dan menyajikan data
+    4. Model — Decision Tree yang diekspor ke format JavaScript (client-side)
+       dan pickle (server-side)
+
+3.8 Perbandingan Model
+    Untuk keperluan optimasi, dilakukan eksperimen dengan 4 model:
+    1. Decision Tree Baseline (parameter sesuai RFD)
+    2. Decision Tree Tuned (max_depth=5, min_samples_split=50)
+    3. Random Forest (200 estimator)
+    4. Gradient Boosting (200 estimator, lr=0.1)
+
+    Hasil perbandingan menunjukkan bahwa Decision Tree tetap dipilih
+    untuk skripsi karena:
+    a. Explainability tinggi — aturan if-then mudah dipahami
+    b. White-box model — transparan untuk tenaga medis
+    c. Recall memadai — sesuai kebutuhan deteksi dini
+    d. Sesuai spesifikasi BAB 1 yang menyebutkan Decision Tree
+
+3.9 Instrumen Penelitian
+    a. Hardware: Laptop dengan prosesor Intel/AMD, RAM >= 8GB
+    b. Software:
+       - Python 3.x dengan scikit-learn, pandas, numpy, matplotlib, flask
+       - Web browser modern (Chrome/Firefox/Edge)
+       - Text editor / IDE
+    c. Dataset: dataset_cleaned.csv (27.817 baris, 7 kolom)
+
+3.10 Teknik Analisis Data
+    Analisis data dilakukan dengan:
+    a. Analisis statistik deskriptif (mean, distribusi, frekuensi)
+    b. Analisis performa model (accuracy, precision, recall, F1, AUC)
+    c. Analisis feature importance (Information Gain)
+    d. Analisis confusion matrix (TP, TN, FP, FN)
+    e. Cross-validation untuk stabilitas model

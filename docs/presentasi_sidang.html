@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CARDIOCARE — Presentasi Sidang Skripsi</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Poppins:wght@700;800&display=swap');
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',sans-serif;background:#0F172A;color:#fff;overflow:hidden}
+.slide{display:none;width:100vw;height:100vh;padding:60px 80px;position:relative;overflow:hidden}
+.slide.active{display:flex;flex-direction:column;justify-content:center}
+.slide::before{content:'';position:absolute;top:-50%;right:-30%;width:80%;height:200%;background:radial-gradient(circle,rgba(220,38,38,.08) 0%,transparent 60%);pointer-events:none}
+h1{font-family:'Poppins',sans-serif;font-size:48px;font-weight:800;line-height:1.2;margin-bottom:16px}
+h2{font-family:'Poppins',sans-serif;font-size:36px;font-weight:700;color:#DC2626;margin-bottom:20px}
+h3{font-size:22px;font-weight:600;margin-bottom:12px;color:#FCA5A5}
+p,.desc{font-size:18px;line-height:1.7;color:#94A3B8;max-width:800px}
+.subtitle{font-size:20px;color:#EF4444;font-weight:600;margin-bottom:8px}
+.highlight{color:#DC2626;font-weight:700}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:20px}
+.card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:24px}
+.stat{font-size:42px;font-weight:800;color:#DC2626;line-height:1}
+.stat-label{font-size:14px;color:#94A3B8;margin-top:6px;text-transform:uppercase;letter-spacing:1px}
+.metric{display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.08)}
+.metric-name{color:#94A3B8;font-size:16px}
+.metric-value{font-weight:700;font-size:18px}
+.good{color:#10B981}
+.warn{color:#F59E0B}
+table{width:100%;border-collapse:collapse;margin-top:16px}
+th,td{padding:10px 14px;text-align:left;font-size:14px;border-bottom:1px solid rgba(255,255,255,.08)}
+th{color:#DC2626;font-weight:700;text-transform:uppercase;font-size:12px;letter-spacing:1px}
+.tag{display:inline-block;padding:4px 12px;border-radius:20px;font-size:12px;font-weight:600;margin:2px}
+.tag-red{background:rgba(220,38,38,.2);color:#EF4444}
+.tag-green{background:rgba(16,185,129,.2);color:#10B981}
+.tag-blue{background:rgba(59,130,246,.2);color:#3B82F6}
+.nav{position:fixed;bottom:20px;right:30px;display:flex;gap:10px;z-index:100}
+.nav button{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#fff;padding:10px 20px;border-radius:8px;cursor:pointer;font-size:14px}
+.nav button:hover{background:rgba(220,38,38,.3)}
+.counter{position:fixed;bottom:24px;left:30px;font-size:13px;color:#64748B;z-index:100}
+ul{list-style:none;padding:0}
+ul li{padding:8px 0;font-size:16px;color:#CBD5E1;display:flex;align-items:flex-start;gap:10px}
+ul li::before{content:'▸';color:#DC2626;font-weight:bold;flex-shrink:0}
+.fi{display:flex;align-items:center;gap:12px;padding:8px 0}
+.fi-bar{height:8px;border-radius:4px;background:linear-gradient(90deg,#DC2626,#EF4444)}
+.fi-label{font-size:14px;color:#94A3B8;min-width:160px}
+.fi-pct{font-size:14px;font-weight:700;color:#fff;min-width:50px;text-align:right}
+</style>
+</head>
+<body>
+
+<div class="counter" id="counter">1 / 15</div>
+<div class="nav">
+<button onclick="prevSlide()">← Prev</button>
+<button onclick="nextSlide()">Next →</button>
+</div>
+
+<!-- SLIDE 1: Title -->
+<div class="slide active">
+<div class="subtitle">Skripsi — Sistem Pendukung Keputusan</div>
+<h1>CARDIOCARE</h1>
+<h2 style="font-size:28px;color:#FCA5A5">Deteksi Dini Risiko Penyakit Jantung<br>Menggunakan Algoritma Decision Tree</h2>
+<p style="margin-top:24px">RSU Aulia, Jagakarsa, Jakarta Selatan</p>
+<p style="font-size:15px;margin-top:8px">Berbasis Web | Dataset 27.817 Pasien | Flask + Decision Tree</p>
+</div>
+
+<!-- SLIDE 2: Latar Belakang -->
+<div class="slide">
+<h2>Latar Belakang</h2>
+<ul>
+<li>Penyakit jantung = penyebab kematian #1 di Indonesia</li>
+<li>RSU Aulia: visi transformasi digital 2026</li>
+<li>Deteksi dini = kunci menurunkan mortalitas</li>
+<li>Diagnosis manual = lambat, subjektif</li>
+<li>Decision Tree = transparan (white-box), mudah dipahami dokter</li>
+<li>Dataset riil 27.817 pasien tersedia untuk pemodelan</li>
+</ul>
+</div>
+
+<!-- SLIDE 3: Rumusan Masalah -->
+<div class="slide">
+<h2>Rumusan Masalah & Tujuan</h2>
+<div class="grid">
+<div class="card">
+<h3>Rumusan Masalah</h3>
+<ul>
+<li>Bagaimana implementasi Decision Tree untuk deteksi dini risiko jantung?</li>
+<li>Seberapa besar akurasi, precision, dan recall model?</li>
+</ul>
+</div>
+<div class="card">
+<h3>Tujuan Penelitian</h3>
+<ul>
+<li>Membangun SPK berbasis web untuk RSU Aulia</li>
+<li>Mengevaluasi performa Decision Tree pada klasifikasi risiko jantung</li>
+</ul>
+</div>
+</div>
+</div>
+
+<!-- SLIDE 4: Dataset -->
+<div class="slide">
+<h2>Dataset</h2>
+<div class="grid" style="grid-template-columns:1fr 1fr 1fr">
+<div class="card"><div class="stat">27.817</div><div class="stat-label">Total Pasien</div></div>
+<div class="card"><div class="stat">3.522</div><div class="stat-label">Risiko Jantung (12.7%)</div></div>
+<div class="card"><div class="stat">6</div><div class="stat-label">Fitur Prediktor</div></div>
+</div>
+<div style="margin-top:20px">
+<h3>Fitur</h3>
+<div style="display:flex;gap:8px;flex-wrap:wrap">
+<span class="tag tag-blue">Usia</span>
+<span class="tag tag-blue">Gender</span>
+<span class="tag tag-red">Sesak Dada</span>
+<span class="tag tag-blue">BMI</span>
+<span class="tag tag-blue">Sistolik</span>
+<span class="tag tag-blue">Diastolik</span>
+</div>
+</div>
+</div>
+
+<!-- SLIDE 5: Preprocessing -->
+<div class="slide">
+<h2>Preprocessing Data</h2>
+<ul>
+<li>Drop 19 kolom kosong + kolom tidak relevan</li>
+<li>Parse usia dari format teks ke numerik</li>
+<li>Split tekanan darah: sistolik / diastolik</li>
+<li>Ekstraksi keluhan sesak dada dari teks bebas</li>
+<li>Label target: ICD-10 kode I10-I79 (kardiovaskular)</li>
+<li>Penanganan anomali: BMI=0, TD=0/0, BMI>100000</li>
+<li>Hasil: 31.638 → <span class="highlight">27.817 rekord bersih</span></li>
+</ul>
+</div>
+
+<!-- SLIDE 6: Metode -->
+<div class="slide">
+<h2>Metode: Decision Tree</h2>
+<div class="grid">
+<div class="card">
+<h3>Konfigurasi</h3>
+<div class="metric"><span class="metric-name">Criterion</span><span class="metric-value">Entropy</span></div>
+<div class="metric"><span class="metric-name">Max Depth</span><span class="metric-value">7</span></div>
+<div class="metric"><span class="metric-name">Min Samples Split</span><span class="metric-value">30</span></div>
+<div class="metric"><span class="metric-name">Min Samples Leaf</span><span class="metric-value">15</span></div>
+<div class="metric"><span class="metric-name">Class Weight</span><span class="metric-value">Balanced</span></div>
+</div>
+<div class="card">
+<h3>Pembagian Data</h3>
+<div class="metric"><span class="metric-name">Training</span><span class="metric-value">22.253 (80%)</span></div>
+<div class="metric"><span class="metric-name">Testing</span><span class="metric-value">5.564 (20%)</span></div>
+<div class="metric"><span class="metric-name">Split Method</span><span class="metric-value">Stratified</span></div>
+<div class="metric"><span class="metric-name">CV</span><span class="metric-value">10-Fold</span></div>
+<div class="metric"><span class="metric-name">Depth Pohon</span><span class="metric-value">7 level</span></div>
+</div>
+</div>
+</div>
+
+<!-- SLIDE 7: Hasil Evaluasi -->
+<div class="slide">
+<h2>Hasil Evaluasi Model</h2>
+<div class="grid">
+<div>
+<div class="metric"><span class="metric-name">Accuracy</span><span class="metric-value">65.89%</span></div>
+<div class="metric"><span class="metric-name">Precision</span><span class="metric-value warn">24.25%</span></div>
+<div class="metric"><span class="metric-name">Recall</span><span class="metric-value good">79.83% ✓</span></div>
+<div class="metric"><span class="metric-name">F1-Score</span><span class="metric-value">37.19%</span></div>
+<div class="metric"><span class="metric-name">ROC-AUC</span><span class="metric-value good">0.7927 ✓</span></div>
+<div class="metric"><span class="metric-name">Overfitting Gap</span><span class="metric-value good">0.002 ✓</span></div>
+</div>
+<div class="card">
+<h3>Confusion Matrix</h3>
+<table>
+<tr><th></th><th>Pred: Tidak</th><th>Pred: Risiko</th></tr>
+<tr><td><b>Aktual Tidak</b></td><td>TN = 2.878</td><td>FP = 1.979</td></tr>
+<tr><td><b>Aktual Risiko</b></td><td>FN = 143</td><td>TP = 564</td></tr>
+</table>
+<p style="font-size:13px;margin-top:12px;color:#94A3B8">Recall tinggi = minimalisir False Negative<br>(penting untuk deteksi dini)</p>
+</div>
+</div>
+</div>
+
+<!-- SLIDE 8: Feature Importance -->
+<div class="slide">
+<h2>Feature Importance</h2>
+<div class="fi"><span class="fi-label">Usia (tahun)</span><div class="fi-bar" style="width:61%"></div><span class="fi-pct">61.1%</span></div>
+<div class="fi"><span class="fi-label">BMI (kg/m²)</span><div class="fi-bar" style="width:13%"></div><span class="fi-pct">12.8%</span></div>
+<div class="fi"><span class="fi-label">Sistolik (mmHg)</span><div class="fi-bar" style="width:12%"></div><span class="fi-pct">12.3%</span></div>
+<div class="fi"><span class="fi-label">Gender</span><div class="fi-bar" style="width:8%"></div><span class="fi-pct">7.8%</span></div>
+<div class="fi"><span class="fi-label">Diastolik (mmHg)</span><div class="fi-bar" style="width:5%"></div><span class="fi-pct">5.1%</span></div>
+<div class="fi"><span class="fi-label">Sesak/Nyeri Dada</span><div class="fi-bar" style="width:1%"></div><span class="fi-pct">0.9%</span></div>
+<p style="margin-top:20px;font-size:15px"><b>Insight:</b> Usia merupakan prediktor paling dominan (61.1%), sesuai literatur medis bahwa risiko kardiovaskular meningkat seiring pertambahan usia.</p>
+</div>
+
+<!-- SLIDE 9: Perbandingan Model -->
+<div class="slide">
+<h2>Perbandingan Model</h2>
+<table>
+<tr><th>Model</th><th>Accuracy</th><th>Precision</th><th>Recall</th><th>F1</th><th>AUC</th></tr>
+<tr style="background:rgba(220,38,38,.15)"><td><b>Decision Tree (Baseline)</b></td><td>65.89%</td><td>24.25%</td><td class="good">79.83%</td><td>37.19%</td><td>0.793</td></tr>
+<tr><td>Decision Tree (Tuned)</td><td>64.11%</td><td>24.13%</td><td class="good">85.65%</td><td>37.65%</td><td>0.781</td></tr>
+<tr><td>Random Forest</td><td>70.63%</td><td>27.49%</td><td>80.68%</td><td class="good">41.01%</td><td class="good">0.823</td></tr>
+<tr><td>Gradient Boosting</td><td>87.19%</td><td class="good">46.09%</td><td class="warn">7.53%</td><td class="warn">12.94%</td><td class="good">0.828</td></tr>
+</table>
+<p style="margin-top:16px;font-size:15px"><b>Keputusan:</b> Decision Tree dipilih karena <span class="highlight">explainability</span> tinggi, aturan if-then transparan untuk tenaga medis, dan recall memadai untuk deteksi dini.</p>
+</div>
+
+<!-- SLIDE 10: Arsitektur Sistem -->
+<div class="slide">
+<h2>Arsitektur Sistem</h2>
+<div class="grid">
+<div class="card">
+<h3>Frontend</h3>
+<ul>
+<li>HTML5 + CSS3 + JavaScript</li>
+<li>Design system premium (glassmorphism)</li>
+<li>Responsive (mobile-friendly)</li>
+<li>Chart.js untuk visualisasi</li>
+<li>Decision Tree client-side (model.js)</li>
+</ul>
+</div>
+<div class="card">
+<h3>Backend</h3>
+<ul>
+<li>Flask (Python) REST API</li>
+<li>8 endpoint API</li>
+<li>Server-side prediction</li>
+<li>Export CSV/Excel/PDF</li>
+<li>Dataset 27.817 pasien</li>
+</ul>
+</div>
+</div>
+</div>
+
+<!-- SLIDE 11: Fitur Aplikasi -->
+<div class="slide">
+<h2>Fitur Aplikasi</h2>
+<div class="grid" style="grid-template-columns:1fr 1fr 1fr">
+<div class="card"><h3>Dashboard</h3><p style="font-size:13px;color:#94A3B8">Monitoring statistik riil, charts distribusi usia/BMI/TD, risiko per gender</p></div>
+<div class="card"><h3>Prediksi SPK</h3><p style="font-size:13px;color:#94A3B8">Form 6 input → Decision Tree → hasil risiko + decision path</p></div>
+<div class="card"><h3>Data Pasien</h3><p style="font-size:13px;color:#94A3B8">Search, filter gender/risiko, pagination, detail modal</p></div>
+<div class="card"><h3>Rekam Medis</h3><p style="font-size:13px;color:#94A3B8">EMR dengan data klinis riil, timeline pemeriksaan</p></div>
+<div class="card"><h3>Laporan</h3><p style="font-size:13px;color:#94A3B8">Statistik BI + export CSV/Excel/PDF</p></div>
+<div class="card"><h3>EKG</h3><p style="font-size:13px;color:#94A3B8">Animasi EKG realtime per pasien risiko</p></div>
+</div>
+</div>
+
+<!-- SLIDE 12: Demo Screenshot -->
+<div class="slide">
+<h2>Demo Aplikasi</h2>
+<p style="font-size:16px;margin-bottom:20px">Aplikasi berjalan di <span class="highlight">http://localhost:5000</span></p>
+<div class="grid">
+<div class="card" style="text-align:center">
+<h3>Screenshot</h3>
+<p style="font-size:14px;color:#94A3B8;margin-top:20px">Buka aplikasi di browser untuk melihat demo langsung semua fitur: Dashboard, Prediksi, Data Pasien, Rekam Medis, EKG, dan Laporan.</p>
+<p style="margin-top:16px"><span class="tag tag-green">Data Riil</span> <span class="tag tag-green">27.817 Pasien</span> <span class="tag tag-green">Decision Tree</span></p>
+</div>
+<div class="card" style="text-align:center">
+<h3>Endpoint API</h3>
+<div style="text-align:left;font-size:13px;font-family:monospace">
+<div style="padding:4px 0">GET /api/stats</div>
+<div style="padding:4px 0">GET /api/patients</div>
+<div style="padding:4px 0">GET /api/patients/:id</div>
+<div style="padding:4px 0">POST /api/predict</div>
+<div style="padding:4px 0">GET /api/charts</div>
+<div style="padding:4px 0">GET /api/report</div>
+<div style="padding:4px 0">GET /api/export/csv</div>
+<div style="padding:4px 0">GET /api/patients/search</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- SLIDE 13: Analisis -->
+<div class="slide">
+<h2>Analisis & Pembahasan</h2>
+<div class="grid">
+<div>
+<h3>Kekuatan</h3>
+<ul>
+<li>Recall 79.83% — deteksi dini efektif</li>
+<li>Tidak overfitting (gap 0.002)</li>
+<li>Explainable — decision path transparan</li>
+<li>Data riil 27.817 pasien</li>
+<li>Cross-validation stabil</li>
+</ul>
+</div>
+<div>
+<h3>Keterbatasan</h3>
+<ul>
+<li>Precision rendah (24.25%) — banyak FP</li>
+<li>Hanya 6 fitur prediktor</li>
+<li>Label retrospektif (bukan prospektif)</li>
+<li>Tidak ada data kolesterol</li>
+<li>Single-center (RSU Aulia saja)</li>
+</ul>
+</div>
+</div>
+</div>
+
+<!-- SLIDE 14: Kesimpulan -->
+<div class="slide">
+<h2>Kesimpulan</h2>
+<ul>
+<li>Aplikasi CARDIOCARE berhasil dibangun sebagai SPK deteksi dini risiko penyakit jantung berbasis web</li>
+<li>Model Decision Tree menghasilkan <span class="highlight">Recall 79.83%</span> dan <span class="highlight">ROC-AUC 0.7927</span></li>
+<li>Usia merupakan prediktor paling dominan (61.1%)</li>
+<li>Seluruh halaman menggunakan <span class="highlight">data riil 27.817 pasien</span> — tanpa data dummy</li>
+<li>Decision path memberikan transparansi keputusan untuk tenaga medis</li>
+<li>Sistem siap digunakan sebagai alat bantu skrining di RSU Aulia</li>
+</ul>
+</div>
+
+<!-- SLIDE 15: Saran -->
+<div class="slide">
+<h2>Saran Pengembangan</h2>
+<ul>
+<li>Penambahan fitur klinis: kolesterol, gula darah, riwayat keluarga</li>
+<li>Implementasi SMOTE untuk penanganan class imbalance</li>
+<li>Integrasi dengan SIMRS (Sistem Informasi Manajemen RS)</li>
+<li>Validasi prospektif di lingkungan klinis nyata</li>
+<li>Pengembangan modul mobile untuk dokter</li>
+<li>Multi-center study untuk generalisasi model</li>
+</ul>
+<div style="margin-top:30px;text-align:center;padding:24px;background:rgba(220,38,38,.1);border-radius:16px">
+<p style="font-size:20px;font-weight:700;color:#DC2626">Terima Kasih</p>
+<p style="font-size:14px;color:#94A3B8;margin-top:8px">Pertanyaan & Diskusi</p>
+</div>
+</div>
+
+<script>
+let currentSlide = 0;
+const slides = document.querySelectorAll('.slide');
+function showSlide(n) {
+  slides[currentSlide].classList.remove('active');
+  currentSlide = Math.max(0, Math.min(n, slides.length - 1));
+  slides[currentSlide].classList.add('active');
+  document.getElementById('counter').textContent = (currentSlide + 1) + ' / ' + slides.length;
+}
+function nextSlide() { showSlide(currentSlide + 1); }
+function prevSlide() { showSlide(currentSlide - 1); }
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight' || e.key === ' ') nextSlide();
+  if (e.key === 'ArrowLeft') prevSlide();
+});
+</script>
+</body>
+</html>

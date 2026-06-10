@@ -1,0 +1,93 @@
+=================================================================
+LAPORAN EVALUASI MODEL DECISION TREE
+SPK Deteksi Dini Risiko Penyakit Jantung — RSU Aulia
+=================================================================
+
+KONFIGURASI MODEL
+-----------------------------------------------------------------
+  Algoritma         : Decision Tree (CART)
+  Criterion         : Entropy (Information Gain)
+  Max Depth         : 7
+  Min Samples Split : 30
+  Min Samples Leaf  : 15
+  Class Weight      : Balanced
+  Splitter          : Best
+  Random State      : 42
+
+DATASET
+-----------------------------------------------------------------
+  Total data        : 27817
+  Training set      : 22253 (80.0%)
+  Testing set       : 5564 (20.0%)
+  Split method      : Stratified random split
+  Fitur             : ['usia', 'gender', 'keluhanawal_sesak_dada', 'bmi', 'sistolik', 'diastolik']
+  Target            : risiko_jantung
+
+STRUKTUR POHON
+-----------------------------------------------------------------
+  Kedalaman         : 7
+  Jumlah leaf nodes : 103
+  Jumlah total node : 205
+
+METRIK EVALUASI (TEST SET)
+-----------------------------------------------------------------
+  Accuracy          : 0.6589 (65.89%)
+  Precision         : 0.2425 (24.25%)
+  Recall            : 0.7983 (79.83%)
+  F1-Score          : 0.3719 (37.19%)
+  ROC-AUC           : 0.7927
+  Specificity       : 0.6387 (63.87%)
+
+CONFUSION MATRIX
+-----------------------------------------------------------------
+                    Prediksi Tidak  Prediksi Risiko
+  Aktual Tidak   :  TN =  3,104     FP =  1,756
+  Aktual Risiko  :  FN =    142     TP =    562
+
+CLASSIFICATION REPORT
+-----------------------------------------------------------------
+                    precision    recall  f1-score   support
+
+  Tidak Risiko (0)       0.96      0.64      0.77      4860
+Risiko Jantung (1)       0.24      0.80      0.37       704
+
+          accuracy                           0.66      5564
+         macro avg       0.60      0.72      0.57      5564
+      weighted avg       0.87      0.66      0.72      5564
+
+
+CROSS-VALIDATION (10-FOLD STRATIFIED)
+-----------------------------------------------------------------
+  F1 per fold       : ['0.3778', '0.3756', '0.3689', '0.3697', '0.3719', '0.3681', '0.3628', '0.3672', '0.3545', '0.3892']
+  F1 mean ± std     : 0.3706 ± 0.0088
+  Accuracy mean ± std: 0.6415 ± 0.0192
+
+OVERFITTING CHECK
+-----------------------------------------------------------------
+  Training accuracy : 0.6611
+  Testing accuracy  : 0.6589
+  Gap               : 0.0022
+  Status            : OK — Tidak overfitting
+
+FEATURE IMPORTANCE
+-----------------------------------------------------------------
+  Usia (tahun)        : 0.6110  ########################
+  BMI (kg/m²)         : 0.1280  #####
+  Sistolik (mmHg)     : 0.1234  ####
+  Gender              : 0.0779  ###
+  Diastolik (mmHg)    : 0.0506  ##
+  Sesak/Nyeri Dada    : 0.0091  
+
+FILE OUTPUT
+-----------------------------------------------------------------
+  Model             : model/decision_tree_model.pkl
+  Aturan keputusan  : model/tree_rules.txt
+  Visualisasi pohon : model/tree_visualization.png
+  Feature importance: model/feature_importance.png
+  Confusion matrix  : model/confusion_matrix.png
+  ROC curve         : model/roc_curve.png
+
+=================================================================
+Training dan evaluasi selesai.
+Model siap digunakan untuk deployment aplikasi web.
+=================================================================

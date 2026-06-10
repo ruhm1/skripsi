@@ -1,6 +1,13 @@
-node_modules/
-dist/
-.env
-.DS_Store
-/frontend/node_modules
-/frontend/dist
+# AI Assistants and Tools
+.agent/
+.agents/
+.claude/
+.claude-plugin/
+.codebuddy/
+.codex/
+.codex-plugin/
+.cursor/
+.gemini/
+.kiro/
+.opencode/
+.trae/

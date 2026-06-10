@@ -1,0 +1,38 @@
+graph LR
+    subgraph Dataset
+        Pasien[Data Pasien]
+    end
+
+    subgraph Attributes
+        ID[id: INT PK]
+        NO_RM[no_rm: VARCHAR UNIQUE]
+        USIA[usia: FLOAT]
+        GENDER[gender: INT 0/1]
+        SESAK[keluhanawal_sesak_dada: INT 0/1]
+        BMI[bmi: FLOAT]
+        SISTOLIK[sistolik: INT]
+        DIASTOLIK[diastolik: INT]
+        RISIKO[risiko_jantung: INT 0/1]
+    end
+
+    subgraph API_Response
+        Stats[Dashboard Stats]
+        PatientList[Patient List]
+        Prediction[Prediction Result]
+        Report[Report Statistics]
+    end
+
+    Pasien --> ID
+    Pasien --> NO_RM
+    Pasien --> USIA
+    Pasien --> GENDER
+    Pasien --> SESAK
+    Pasien --> BMI
+    Pasien --> SISTOLIK
+    Pasien --> DIASTOLIK
+    Pasien --> RISIKO
+
+    Pasien -->|1:N| Stats
+    Pasien -->|1:N| PatientList
+    Pasien -->|1:1| Prediction
+    Pasien -->|1:N| Report

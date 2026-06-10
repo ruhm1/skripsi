@@ -1,0 +1,39 @@
+graph TB
+    Start([Mulai]) --> A[User Membuka CARDIOCARE]
+    A --> B[Browser Load Frontend]
+    B --> C[Frontend Fetch Data dari API]
+    C --> D{Server Tersedia?}
+    D -->|Ya| E[Backend Load Dataset CSV + Model]
+    E --> F[API Response Data Riil]
+    D -->|Tidak| G[Gunakan Fallback Data]
+    F --> H[Tampilkan Dashboard]
+    G --> H
+    H --> I{User Memilih Aksi}
+    I -->|Prediksi| J[User Isi Form Input]
+    J --> K[Validasi 6 Parameter]
+    K --> L{Valid?}
+    L -->|Tidak| M[Tampilkan Alert Error]
+    M --> J
+    L -->|Ya| N[POST /api/predict]
+    N --> O[Server: Decision Tree Predict]
+    O --> P[Hitung Decision Path]
+    P --> Q[Return Prediction + Probability]
+    Q --> R[Tampilkan Hasil Risiko]
+    R --> S[Tampilkan Alur Keputusan]
+    I -->|Data Pasien| T[GET /api/patients]
+    T --> U[Render Tabel Paginasi]
+    U --> V{Klik Detail?}
+    V -->|Ya| W[GET /api/patients/id]
+    W --> X[Tampilkan Modal + Prediksi]
+    I -->|Laporan| Y[GET /api/report]
+    Y --> Z[Tampilkan Statistik + Charts]
+    Z --> AA{Export?}
+    AA -->|CSV| AB[Download CSV]
+    AA -->|Excel| AC[Generate XLS]
+    AA -->|PDF| AD[Print Report]
+    AB --> End([Selesai])
+    AC --> End
+    AD --> End
+    S --> End
+    X --> End
+    V -->|Tidak| End

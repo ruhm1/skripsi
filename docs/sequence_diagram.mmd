@@ -1,0 +1,50 @@
+sequenceDiagram
+    participant User
+    participant Browser
+    participant Frontend
+    participant API as Flask API
+    participant Model as Decision Tree
+    participant Data as Dataset CSV
+
+    Note over User, Data: Skenario: Prediksi Risiko Jantung
+
+    User->>Browser: Buka http://localhost:5000
+    Browser->>Frontend: Load index.html + CSS + JS
+    Frontend->>API: GET /api/stats
+    API->>Data: Read dataset_cleaned.csv
+    Data-->>API: 27.817 records
+    API-->>Frontend: JSON statistik
+    Frontend-->>Browser: Render Dashboard + Charts
+
+    User->>Browser: Klik menu "Prediksi Risiko"
+    Browser->>Frontend: Show page prediksi
+
+    User->>Frontend: Input: Usia=55, Gender=L, BMI=28, TD=145/90, Sesak=Ya
+    User->>Frontend: Klik "Analisis Risiko Jantung"
+
+    Frontend->>Frontend: Validasi input
+    Frontend->>API: POST /api/predict {usia, gender, bmi, sistolik, diastolik, sesak}
+    API->>Model: predict([55, 0, 1, 28, 145, 90])
+    Model-->>API: prediction=1, probability=[0.35, 0.65]
+    API->>Model: decision_path()
+    Model-->>API: path=[usia>38.33, sistolik>124.5, ...]
+    API-->>Frontend: JSON {prediction, probability, path}
+    Frontend-->>Browser: Render hasil risiko + decision path
+    Browser-->>User: Tampilkan: "RISIKO JANTUNG (65.0%)"
+
+    Note over User, Data: Skenario: Lihat Data Pasien
+
+    User->>Browser: Klik menu "Data Pasien"
+    Frontend->>API: GET /api/patients?page=1&per_page=15
+    API->>Data: Filter + Paginate
+    Data-->>API: 15 records
+    API-->>Frontend: JSON {data, total, pages}
+    Frontend-->>Browser: Render tabel pasien
+
+    User->>Frontend: Klik "Detail" pada pasien
+    Frontend->>API: GET /api/patients/123
+    API->>Data: Get patient by ID
+    API->>Model: predict(patient features)
+    Model-->>API: prediction + probability
+    API-->>Frontend: JSON detail + prediksi
+    Frontend-->>Browser: Show modal detail

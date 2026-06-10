@@ -1,0 +1,43 @@
+graph LR
+    User((User/Dokter))
+
+    UC1[Lihat Dashboard Statistik]
+    UC2[Input Data Prediksi Risiko]
+    UC3[Lihat Hasil Prediksi + Decision Path]
+    UC4[Cari Data Pasien]
+    UC5[Filter Data Pasien]
+    UC6[Lihat Detail Pasien]
+    UC7[Akses Rekam Medis Elektronik]
+    UC8[Export Laporan CSV/Excel/PDF]
+    UC9[Monitoring EKG Pasien]
+    UC10[Lihat Laporan Statistik]
+
+    User --> UC1
+    User --> UC2
+    UC2 --> UC3
+    User --> UC4
+    UC4 --> UC5
+    UC4 --> UC6
+    User --> UC7
+    User --> UC8
+    User --> UC9
+    User --> UC10
+
+    API((Flask API))
+
+    UC1 --> API
+    UC2 --> API
+    UC4 --> API
+    UC6 --> API
+    UC7 --> API
+    UC8 --> API
+    UC10 --> API
+
+    Model((Decision Tree Model))
+
+    UC3 --> Model
+    UC6 --> Model
+
+    DB((Dataset CSV 27.817 pasien))
+
+    API --> DB
