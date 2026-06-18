@@ -2,10 +2,10 @@
 Preprocessing Dataset v2 — Disesuaikan dengan BAB 1 Skripsi
 ============================================================
 Menghasilkan 6 fitur prediktor + 1 target sesuai ruang lingkup skripsi:
-  1. usia             (float) — Usia pasien dalam tahun
+  1. usia             (int)   — Usia pasien dalam tahun (dibulatkan)
   2. gender           (int)   — 0=Laki-laki, 1=Perempuan
   3. keluhanawal_sesak_dada (int) — 1=ada keluhan sesak/nyeri dada, 0=tidak
-  4. bmi              (float) — Indeks Massa Tubuh
+  4. bmi              (int)   — Indeks Massa Tubuh (dibulatkan)
   5. sistolik         (int)   — Tekanan darah sistolik (mmHg)
   6. diastolik        (int)   — Tekanan darah diastolik (mmHg)
   Target:
@@ -58,7 +58,7 @@ def parse_usia_to_years(usia_str):
     m = re.match(r'(\d+)\s*tahun[,\s]*(\d+)\s*bulan[,\s]*(\d+)\s*hari', s, re.I)
     if m:
         years, months, days = int(m.group(1)), int(m.group(2)), int(m.group(3))
-        return round(years + months / 12 + days / 365, 2)
+        return int(round(years + months / 12 + days / 365))
 
     # Pattern: "55 Th 3 Bl 28 Hr"
     m_th = re.search(r'(\d+)\s*Th', s, re.I)
@@ -70,7 +70,7 @@ def parse_usia_to_years(usia_str):
     if m_hr: days = int(m_hr.group(1))
 
     if m_th or m_bl or m_hr:
-        return round(years + months / 12 + days / 365, 2)
+        return int(round(years + months / 12 + days / 365))
 
     return None
 
@@ -180,7 +180,7 @@ def main():
             'usia': usia_years,
             'gender': GENDER_MAP[gender],
             'keluhanawal_sesak_dada': keluhan_sesak_dada,
-            'bmi': round(bmi_val, 2),
+            'bmi': int(round(bmi_val)),
             'sistolik': sistolik,
             'diastolik': diastolik,
             'risiko_jantung': risiko,
@@ -290,7 +290,7 @@ def main():
     rpt.append("  - keluhanawal → keluhanawal_sesak_dada (binary)")
     rpt.append("    Keyword: sesak, sesek, nafas berat, ngos-ngos,")
     rpt.append("             nyeri dada, dada sakit, dada nyeri, chest pain")
-    rpt.append("  - usia: 'XX Th YY Bl ZZ Hr' → float (tahun)")
+    rpt.append("  - usia: 'XX Th YY Bl ZZ Hr' → int (tahun, dibulatkan)")
     rpt.append("  - tekanan_darah: 'sistolik/diastolik' → 2 kolom int")
     rpt.append("  - gender: Laki-laki=0, Perempuan=1")
     rpt.append("  - diagnosa → risiko_jantung: ICD I10-I79 = 1, lainnya = 0")
@@ -309,10 +309,10 @@ def main():
     rpt.append(f"  {'No':<4s} {'Kolom':<26s} {'Tipe':<8s} {'Deskripsi'}")
     rpt.append(f"  {'--':<4s} {'-'*26} {'-'*8} {'-'*30}")
     col_info = [
-        ('1', 'usia',                   'float', 'Usia pasien (tahun)'),
+        ('1', 'usia',                   'int',   'Usia pasien (tahun, dibulatkan)'),
         ('2', 'gender',                 'int',   '0=Laki-laki, 1=Perempuan'),
         ('3', 'keluhanawal_sesak_dada', 'int',   '1=sesak/nyeri dada, 0=tidak'),
-        ('4', 'bmi',                    'float', 'Indeks Massa Tubuh (kg/m²)'),
+        ('4', 'bmi',                    'int',   'Indeks Massa Tubuh (kg/m², dibulatkan)'),
         ('5', 'sistolik',              'int',   'Tekanan darah sistolik (mmHg)'),
         ('6', 'diastolik',             'int',   'Tekanan darah diastolik (mmHg)'),
         ('T', 'risiko_jantung',        'int',   'TARGET: 0=Tidak, 1=Ya'),
@@ -363,8 +363,8 @@ def main():
     )
     for r in cleaned[:10]:
         rpt.append(
-            f"  {r['usia']:7.2f} {r['gender']:4d} {r['keluhanawal_sesak_dada']:5d} "
-            f"{r['bmi']:7.2f} {r['sistolik']:5d} {r['diastolik']:5d} "
+            f"  {r['usia']:7d} {r['gender']:4d} {r['keluhanawal_sesak_dada']:5d} "
+            f"{r['bmi']:7d} {r['sistolik']:5d} {r['diastolik']:5d} "
             f"{r['risiko_jantung']:6d}"
         )
     rpt.append("")

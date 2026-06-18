@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="app.diagrams.net" modified="2026-06-17" type="device">
+  <diagram name="Entropy &amp; Information Gain" id="ig4">
+    <mxGraphModel dx="1300" dy="700" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1200" pageHeight="680" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <!-- ===== TITLE ===== -->
+        <mxCell id="200"
+          value="&lt;b&gt;&lt;font style=&quot;font-size:13px&quot;&gt;Gambar 2.4 Ilustrasi Perhitungan Entropy dan Information Gain&lt;br&gt;pada Node Decision Tree&lt;/font&gt;&lt;/b&gt;"
+          style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontFamily=Times New Roman;fontColor=#000000;"
+          vertex="1" parent="1">
+          <mxGeometry x="310" y="8" width="580" height="40" as="geometry" />
+        </mxCell>
+
+        <!-- ===== BOX 1: Dataset Awal (Parent Node) ===== -->
+        <mxCell id="201"
+          value="&lt;div style=&quot;font-family:Times New Roman;padding:0;margin:0&quot;&gt;&lt;div style=&quot;background:#C0C0C0;padding:6px 10px;font-size:12px;font-weight:bold;text-align:center;border-bottom:2px solid #000&quot;&gt;Dataset Awal&lt;/div&gt;&lt;div style=&quot;padding:8px 10px;font-size:10px;line-height:1.6&quot;&gt;&lt;b&gt;Total Data = 27.817&lt;/b&gt;&lt;br&gt;Kelas Positif = 3.522&lt;br&gt;Kelas Negatif = 24.295&lt;br&gt;&lt;hr style=&quot;border:0;border-top:1px solid #999;margin:6px 0&quot;&gt;&lt;b&gt;Entropy(S)&lt;/b&gt; = &amp;#8722;p&amp;#8330; log&amp;#8322;(p&amp;#8330;) &amp;#8722; p&amp;#8331; log&amp;#8322;(p&amp;#8331;)&lt;br&gt;&lt;br&gt;&lt;b style=&quot;font-size:11px&quot;&gt;Entropy(S) &amp;#8776; 0,548&lt;/b&gt;&lt;/div&gt;&lt;/div&gt;"
+          style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=2;arcSize=6;verticalAlign=top;overflow=hidden;"
+          vertex="1" parent="1">
+          <mxGeometry x="20" y="60" width="220" height="220" as="geometry" />
+        </mxCell>
+
+        <!-- ===== BOX 2: Decision Node ===== -->
+        <mxCell id="202"
+          value="&lt;b style=&quot;font-size:12px&quot;&gt;Usia &amp;#8804; 38?&lt;/b&gt;"
+          style="rhombus;whiteSpace=wrap;html=1;fillColor=#E0E0E0;strokeColor=#000000;strokeWidth=1.5;fontFamily=Times New Roman;fontSize=12;"
+          vertex="1" parent="1">
+          <mxGeometry x="340" y="115" width="180" height="110" as="geometry" />
+        </mxCell>
+
+        <!-- ===== BOX 3: Child Kiri (Usia ≤ 38) ===== -->
+        <mxCell id="203"
+          value="&lt;div style=&quot;font-family:Times New Roman;padding:0;margin:0&quot;&gt;&lt;div style=&quot;background:#D5D5D5;padding:5px 8px;font-size:11px;font-weight:bold;text-align:center;border-bottom:1px solid #555&quot;&gt;Usia &amp;#8804; 38&lt;/div&gt;&lt;div style=&quot;padding:6px 8px;font-size:10px;line-height:1.55&quot;&gt;Positif = 320&lt;br&gt;Negatif = 10.250&lt;br&gt;&lt;b&gt;Entropy &amp;#8776; 0,190&lt;/b&gt;&lt;br&gt;&lt;i style=&quot;font-size:9px&quot;&gt;Node lebih homogen&lt;/i&gt;&lt;/div&gt;&lt;/div&gt;"
+          style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.5;arcSize=8;verticalAlign=top;overflow=hidden;"
+          vertex="1" parent="1">
+          <mxGeometry x="280" y="340" width="170" height="150" as="geometry" />
+        </mxCell>
+
+        <!-- ===== BOX 4: Child Kanan (Usia > 38) ===== -->
+        <mxCell id="204"
+          value="&lt;div style=&quot;font-family:Times New Roman;padding:0;margin:0&quot;&gt;&lt;div style=&quot;background:#D5D5D5;padding:5px 8px;font-size:11px;font-weight:bold;text-align:center;border-bottom:1px solid #555&quot;&gt;Usia &gt; 38&lt;/div&gt;&lt;div style=&quot;padding:6px 8px;font-size:10px;line-height:1.55&quot;&gt;Positif = 3.202&lt;br&gt;Negatif = 14.045&lt;br&gt;&lt;b&gt;Entropy &amp;#8776; 0,690&lt;/b&gt;&lt;br&gt;&lt;i style=&quot;font-size:9px&quot;&gt;Masih mengandung variasi kelas&lt;/i&gt;&lt;/div&gt;&lt;/div&gt;"
+          style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.5;arcSize=8;verticalAlign=top;overflow=hidden;"
+          vertex="1" parent="1">
+          <mxGeometry x="500" y="340" width="170" height="150" as="geometry" />
+        </mxCell>
+
+        <!-- ===== BOX 5: Entropy Setelah Split ===== -->
+        <mxCell id="205"
+          value="&lt;div style=&quot;font-family:Times New Roman;padding:0;margin:0&quot;&gt;&lt;div style=&quot;background:#C8C8C8;padding:5px 8px;font-size:11px;font-weight:bold;text-align:center;border-bottom:1.5px solid #333&quot;&gt;Entropy Setelah Split&lt;/div&gt;&lt;div style=&quot;padding:8px 10px;font-size:10px;line-height:1.6&quot;&gt;&lt;b&gt;Entropy&lt;sub&gt;split&lt;/sub&gt;&lt;/b&gt; =&lt;br&gt;(10.570/27.817 &amp;#215; 0,190) +&lt;br&gt;(17.247/27.817 &amp;#215; 0,690)&lt;br&gt;&lt;br&gt;&lt;b style=&quot;font-size:11px&quot;&gt;Entropy&lt;sub&gt;split&lt;/sub&gt; &amp;#8776; 0,500&lt;/b&gt;&lt;/div&gt;&lt;/div&gt;"
+          style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.5;arcSize=8;verticalAlign=top;overflow=hidden;"
+          vertex="1" parent="1">
+          <mxGeometry x="750" y="350" width="210" height="170" as="geometry" />
+        </mxCell>
+
+        <!-- ===== BOX 6: Information Gain (EMPHASIZED) ===== -->
+        <mxCell id="206"
+          value="&lt;div style=&quot;font-family:Times New Roman;padding:0;margin:0&quot;&gt;&lt;div style=&quot;background:#B0B0B0;padding:6px 8px;font-size:12px;font-weight:bold;text-align:center;border-bottom:2px solid #000&quot;&gt;Information Gain&lt;/div&gt;&lt;div style=&quot;padding:8px 10px;font-size:10px;line-height:1.6&quot;&gt;&lt;b&gt;Gain(S, Usia)&lt;/b&gt; =&lt;br&gt;Entropy(S) &amp;#8722; Entropy&lt;sub&gt;split&lt;/sub&gt;&lt;br&gt;&lt;br&gt;Gain = 0,548 &amp;#8722; 0,500&lt;br&gt;&lt;br&gt;&lt;b style=&quot;font-size:13px&quot;&gt;Gain &amp;#8776; 0,048&lt;/b&gt;&lt;/div&gt;&lt;/div&gt;"
+          style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F5F5;strokeColor=#000000;strokeWidth=2.5;arcSize=8;verticalAlign=top;overflow=hidden;"
+          vertex="1" parent="1">
+          <mxGeometry x="1010" y="355" width="180" height="185" as="geometry" />
+        </mxCell>
+
+        <!-- ===== ARROW: Parent → Decision ===== -->
+        <mxCell id="211" value="&lt;i style=&quot;font-size:9px&quot;&gt;Pemilihan&lt;br&gt;Atribut Terbaik&lt;/i&gt;"
+          style="endArrow=block;html=1;rounded=0;strokeWidth=1.5;strokeColor=#000000;endFill=1;fontFamily=Times New Roman;fontSize=10;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;"
+          edge="1" source="201" target="202" parent="1">
+          <mxGeometry x="-0.1" y="-12" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- ===== ARROW: Decision → Child Left (Ya) ===== -->
+        <mxCell id="212" value="&lt;b&gt;Ya&lt;/b&gt;"
+          style="endArrow=block;html=1;rounded=0;strokeWidth=1.5;strokeColor=#000000;endFill=1;fontFamily=Times New Roman;fontSize=11;labelBackgroundColor=#FFFFFF;exitX=0.3;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;"
+          edge="1" source="202" target="203" parent="1">
+          <mxGeometry x="-0.2" y="10" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- ===== ARROW: Decision → Child Right (Tidak) ===== -->
+        <mxCell id="213" value="&lt;b&gt;Tidak&lt;/b&gt;"
+          style="endArrow=block;html=1;rounded=0;strokeWidth=1.5;strokeColor=#000000;endFill=1;fontFamily=Times New Roman;fontSize=11;labelBackgroundColor=#FFFFFF;exitX=0.7;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;"
+          edge="1" source="202" target="204" parent="1">
+          <mxGeometry x="0.2" y="10" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- ===== ARROW: Child Left → Entropy Split ===== -->
+        <mxCell id="214" value=""
+          style="endArrow=block;html=1;rounded=1;strokeWidth=1.5;strokeColor=#000000;endFill=1;exitX=1;exitY=0.7;exitDx=0;exitDy=0;entryX=0;entryY=0.3;entryDx=0;entryDy=0;orthogonalLoop=1;elbow=horizontal;"
+          edge="1" source="203" target="205" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- ===== ARROW: Child Right → Entropy Split ===== -->
+        <mxCell id="215" value=""
+          style="endArrow=block;html=1;rounded=1;strokeWidth=1.5;strokeColor=#000000;endFill=1;exitX=1;exitY=0.7;exitDx=0;exitDy=0;entryX=0;entryY=0.7;entryDx=0;entryDy=0;orthogonalLoop=1;elbow=horizontal;"
+          edge="1" source="204" target="205" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- ===== ARROW: Entropy Split → Information Gain ===== -->
+        <mxCell id="216" value=""
+          style="endArrow=block;html=1;rounded=0;strokeWidth=1.5;strokeColor=#000000;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;"
+          edge="1" source="205" target="206" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- ===== CAPTION ===== -->
+        <mxCell id="220"
+          value="&lt;i&gt;Perhitungan Entropy dan Information Gain digunakan untuk menentukan atribut terbaik sebagai node pemisah pada algoritma Decision Tree. Atribut dengan nilai Information Gain tertinggi dipilih untuk membentuk struktur pohon keputusan.&lt;/i&gt;"
+          style="text;html=1;align=center;verticalAlign=top;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontFamily=Times New Roman;fontSize=10;fontColor=#333333;spacingTop=4;"
+          vertex="1" parent="1">
+          <mxGeometry x="100" y="565" width="1000" height="45" as="geometry" />
+        </mxCell>
+
+        <!-- ===== NOTE: Gain explanation ===== -->
+        <mxCell id="221"
+          value="&lt;i style=&quot;font-size:9px&quot;&gt;Semakin besar nilai Gain,&lt;br&gt;semakin baik atribut digunakan&lt;br&gt;sebagai node pemisah.&lt;/i&gt;"
+          style="text;html=1;align=center;verticalAlign=top;resizable=0;points=[];autosize=1;strokeColor=#999999;fillColor=none;fontFamily=Times New Roman;fontSize=9;fontColor=#555555;dashed=1;dashPattern=3 3;rounded=1;arcSize=10;"
+          vertex="1" parent="1">
+          <mxGeometry x="1020" y="555" width="165" height="55" as="geometry" />
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

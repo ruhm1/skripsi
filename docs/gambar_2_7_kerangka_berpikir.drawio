@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="app.diagrams.net" modified="2026-06-17" type="device">
+  <diagram name="Kerangka Berpikir" id="kb7">
+    <mxGraphModel dx="900" dy="1100" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1170" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <!-- ===== TITLE ===== -->
+        <mxCell id="600"
+          value="&lt;b&gt;&lt;font style=&quot;font-size:13px&quot;&gt;Gambar 2.7 Kerangka Berpikir Penelitian CARDIOCARE&lt;/font&gt;&lt;/b&gt;"
+          style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontFamily=Times New Roman;fontColor=#000000;"
+          vertex="1" parent="1">
+          <mxGeometry x="200" y="12" width="430" height="28" as="geometry" />
+        </mxCell>
+
+        <!-- ===== BOX 1: MASALAH ===== -->
+        <mxCell id="601"
+          value="&lt;div style=&quot;font-family:Times New Roman;padding:0;margin:0&quot;&gt;&lt;div style=&quot;background:#B8B8B8;padding:5px 10px;font-size:12px;font-weight:bold;text-align:center;border-bottom:2px solid #000&quot;&gt;&amp;#9829; MASALAH&lt;/div&gt;&lt;div style=&quot;padding:6px 10px;font-size:10px;line-height:1.55&quot;&gt;&amp;bull; Tingginya mortalitas penyakit jantung di Indonesia.&lt;br&gt;&amp;bull; Penyakit jantung menjadi penyebab kematian tertinggi.&lt;br&gt;&amp;bull; Keterbatasan skrining risiko secara manual di RSU Aulia.&lt;br&gt;&amp;bull; Analisis masih bergantung pada interpretasi tenaga medis.&lt;/div&gt;&lt;/div&gt;"
+          style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.5;arcSize=6;verticalAlign=top;overflow=hidden;"
+          vertex="1" parent="1">
+          <mxGeometry x="110" y="55" width="530" height="120" as="geometry" />
+        </mxCell>
+
+        <!-- ===== BOX 2: RESEARCH GAP ===== -->
+        <mxCell id="602"
+          value="&lt;div style=&quot;font-family:Times New Roman;padding:0;margin:0&quot;&gt;&lt;div style=&quot;background:#B8B8B8;padding:5px 10px;font-size:12px;font-weight:bold;text-align:center;border-bottom:2px solid #000&quot;&gt;&amp;#128269; RESEARCH GAP&lt;/div&gt;&lt;div style=&quot;padding:6px 10px;font-size:10px;line-height:1.55&quot;&gt;&amp;bull; Kurangnya SPK berbasis data rekam medis lokal Indonesia.&lt;br&gt;&amp;bull; Belum tersedia sistem prediksi risiko jantung berbasis web dengan Decision Tree pada RS tipe C.&lt;br&gt;&amp;bull; Keterbatasan implementasi ML yang transparan (explainable) bagi tenaga medis.&lt;/div&gt;&lt;/div&gt;"
+          style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.5;arcSize=6;verticalAlign=top;overflow=hidden;"
+          vertex="1" parent="1">
+          <mxGeometry x="110" y="210" width="530" height="115" as="geometry" />
+        </mxCell>
+
+        <!-- ===== BOX 3: SOLUSI TEORI ===== -->
+        <mxCell id="603"
+          value="&lt;div style=&quot;font-family:Times New Roman;padding:0;margin:0&quot;&gt;&lt;div style=&quot;background:#B8B8B8;padding:5px 10px;font-size:12px;font-weight:bold;text-align:center;border-bottom:2px solid #000&quot;&gt;&amp;#128202; SOLUSI TEORI&lt;/div&gt;&lt;div style=&quot;padding:6px 10px;font-size:10px;line-height:1.55&quot;&gt;&lt;b&gt;Sistem Pendukung Keputusan (SPK)&lt;/b&gt; &amp;#215; &lt;b&gt;Machine Learning&lt;/b&gt; &amp;#215; &lt;b&gt;Decision Tree&lt;/b&gt;&lt;br&gt;(Entropy dan Information Gain)&lt;br&gt;&lt;br&gt;&amp;bull; Akuisisi Pengetahuan&lt;br&gt;&amp;bull; Klasifikasi Risiko&lt;br&gt;&amp;bull; Explainable Prediction&lt;br&gt;&amp;bull; Decision Support&lt;/div&gt;&lt;/div&gt;"
+          style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.5;arcSize=6;verticalAlign=top;overflow=hidden;"
+          vertex="1" parent="1">
+          <mxGeometry x="110" y="360" width="530" height="140" as="geometry" />
+        </mxCell>
+
+        <!-- ===== BOX 4: DATA PENELITIAN ===== -->
+        <mxCell id="604"
+          value="&lt;div style=&quot;font-family:Times New Roman;padding:0;margin:0&quot;&gt;&lt;div style=&quot;background:#B8B8B8;padding:5px 10px;font-size:12px;font-weight:bold;text-align:center;border-bottom:2px solid #000&quot;&gt;&amp;#128451; DATA PENELITIAN&lt;/div&gt;&lt;div style=&quot;padding:6px 10px;font-size:10px;line-height:1.55&quot;&gt;&lt;b&gt;Sumber Data:&lt;/b&gt; Rekam Medis RSU Aulia&lt;br&gt;&lt;b&gt;Jumlah Data:&lt;/b&gt; 27.817 rekord&lt;br&gt;&lt;br&gt;&lt;b&gt;Fitur Prediktor Klinis:&lt;/b&gt;&lt;br&gt;&amp;bull; Usia &amp;bull; BMI &amp;bull; Tekanan Darah Sistolik&lt;br&gt;&amp;bull; Tekanan Darah Diastolik &amp;bull; Gender &amp;bull; Sesak/Nyeri Dada&lt;/div&gt;&lt;/div&gt;"
+          style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.5;arcSize=6;verticalAlign=top;overflow=hidden;"
+          vertex="1" parent="1">
+          <mxGeometry x="110" y="535" width="530" height="130" as="geometry" />
+        </mxCell>
+
+        <!-- ===== BOX 5: PEMODELAN ===== -->
+        <mxCell id="605"
+          value="&lt;div style=&quot;font-family:Times New Roman;padding:0;margin:0&quot;&gt;&lt;div style=&quot;background:#B8B8B8;padding:5px 10px;font-size:12px;font-weight:bold;text-align:center;border-bottom:2px solid #000&quot;&gt;&amp;#127795; PEMODELAN&lt;/div&gt;&lt;div style=&quot;padding:6px 10px;font-size:10px;line-height:1.55&quot;&gt;&lt;b&gt;Tahapan:&lt;/b&gt;&lt;br&gt;&amp;bull; Data Preprocessing &amp;bull; Feature Selection&lt;br&gt;&amp;bull; Training Decision Tree &amp;bull; Stratified 10-Fold CV&lt;br&gt;&amp;bull; Evaluasi Model&lt;br&gt;&lt;br&gt;&lt;b&gt;Metrik Evaluasi:&lt;/b&gt;&lt;br&gt;&amp;bull; Recall &amp;bull; F1-Score &amp;bull; ROC-AUC &amp;bull; Accuracy&lt;/div&gt;&lt;/div&gt;"
+          style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.5;arcSize=6;verticalAlign=top;overflow=hidden;"
+          vertex="1" parent="1">
+          <mxGeometry x="110" y="700" width="530" height="145" as="geometry" />
+        </mxCell>
+
+        <!-- ===== BOX 6: OUTPUT PENELITIAN (EMPHASIZED) ===== -->
+        <mxCell id="606"
+          value="&lt;div style=&quot;font-family:Times New Roman;padding:0;margin:0&quot;&gt;&lt;div style=&quot;background:#A0A0A0;padding:7px 10px;font-size:13px;font-weight:bold;text-align:center;border-bottom:2px solid #000&quot;&gt;&amp;#128187; OUTPUT PENELITIAN&lt;/div&gt;&lt;div style=&quot;padding:8px 12px;font-size:10px;line-height:1.55&quot;&gt;&lt;b style=&quot;font-size:14px&quot;&gt;CARDIOCARE&lt;/b&gt;&lt;br&gt;&lt;i&gt;Sistem Prediksi Risiko Penyakit Jantung Berbasis Web&lt;/i&gt;&lt;br&gt;&lt;br&gt;&lt;b&gt;Output Sistem:&lt;/b&gt;&lt;br&gt;&amp;bull; Dashboard Klinis&lt;br&gt;&amp;bull; Prediksi Risiko Pasien&lt;br&gt;&amp;bull; Decision Path Transparan&lt;br&gt;&amp;bull; Dukungan Pengambilan Keputusan Medis&lt;br&gt;&amp;bull; Monitoring Risiko Penyakit Jantung&lt;/div&gt;&lt;/div&gt;"
+          style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F5F5;strokeColor=#000000;strokeWidth=2.5;arcSize=6;verticalAlign=top;overflow=hidden;"
+          vertex="1" parent="1">
+          <mxGeometry x="110" y="885" width="530" height="185" as="geometry" />
+        </mxCell>
+
+        <!-- ===== ARROW 1→2 ===== -->
+        <mxCell id="611" value=""
+          style="endArrow=block;html=1;rounded=0;strokeWidth=2;strokeColor=#000000;endFill=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;"
+          edge="1" source="601" target="602" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- ===== ARROW 2→3 ===== -->
+        <mxCell id="612" value=""
+          style="endArrow=block;html=1;rounded=0;strokeWidth=2;strokeColor=#000000;endFill=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;"
+          edge="1" source="602" target="603" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- ===== ARROW 3→4 ===== -->
+        <mxCell id="613" value=""
+          style="endArrow=block;html=1;rounded=0;strokeWidth=2;strokeColor=#000000;endFill=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;"
+          edge="1" source="603" target="604" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- ===== ARROW 4→5 ===== -->
+        <mxCell id="614" value=""
+          style="endArrow=block;html=1;rounded=0;strokeWidth=2;strokeColor=#000000;endFill=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;"
+          edge="1" source="604" target="605" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- ===== ARROW 5→6 ===== -->
+        <mxCell id="615" value=""
+          style="endArrow=block;html=1;rounded=0;strokeWidth=2;strokeColor=#000000;endFill=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;"
+          edge="1" source="605" target="606" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- ===== SIDE NOTE: Tujuan Penelitian ===== -->
+        <mxCell id="620"
+          value="&lt;div style=&quot;font-family:Times New Roman;padding:6px 8px;font-size:9px;line-height:1.5&quot;&gt;&lt;div style=&quot;font-weight:bold;font-size:10px;text-align:center;margin-bottom:4px;border-bottom:1px solid #666;padding-bottom:3px&quot;&gt;Tujuan Penelitian&lt;/div&gt;Membangun Sistem Pendukung Keputusan berbasis Machine Learning menggunakan algoritma Decision Tree untuk membantu deteksi dini risiko penyakit jantung pada RSU Aulia.&lt;/div&gt;"
+          style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F0F0F0;strokeColor=#000000;strokeWidth=1;dashed=1;dashPattern=5 3;arcSize=8;verticalAlign=top;overflow=hidden;"
+          vertex="1" parent="1">
+          <mxGeometry x="665" y="180" width="145" height="120" as="geometry" />
+        </mxCell>
+
+        <!-- ===== DASHED LINE: Side note → Box 3 ===== -->
+        <mxCell id="621" value=""
+          style="endArrow=open;html=1;rounded=0;strokeWidth=1;strokeColor=#666666;dashed=1;dashPattern=5 3;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.3;entryDx=0;entryDy=0;"
+          edge="1" source="620" target="603" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- ===== CAPTION ===== -->
+        <mxCell id="630"
+          value="&lt;i&gt;Kerangka berpikir penelitian menunjukkan hubungan logis antara permasalahan yang dihadapi, kesenjangan penelitian yang ditemukan, landasan teori yang digunakan, proses pemodelan data, hingga pengembangan sistem CARDIOCARE sebagai solusi pendukung deteksi dini risiko penyakit jantung.&lt;/i&gt;"
+          style="text;html=1;align=center;verticalAlign=top;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontFamily=Times New Roman;fontSize=10;fontColor=#333333;spacingTop=4;"
+          vertex="1" parent="1">
+          <mxGeometry x="15" y="1095" width="800" height="50" as="geometry" />
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -426,12 +426,12 @@ def api_patients():
         records.append({
             'id': int(row['id']),
             'no_rm': row['no_rm'],
-            'usia': round(float(row['usia']), 1),
+            'usia': int(row['usia']),
             'gender': int(row['gender']),
             'gender_label': 'Perempuan' if row['gender'] == 1
                             else 'Laki-laki',
             'sesak_dada': int(row['keluhanawal_sesak_dada']),
-            'bmi': round(float(row['bmi']), 2),
+            'bmi': int(row['bmi']),
             'sistolik': int(row['sistolik']),
             'diastolik': int(row['diastolik']),
             'td': f"{int(row['sistolik'])}/{int(row['diastolik'])}",
@@ -459,9 +459,9 @@ def api_patient_detail(patient_id):
     row = row.iloc[0]
 
     features = np.array([[
-        float(row['usia']), int(row['gender']),
+        int(row['usia']), int(row['gender']),
         int(row['keluhanawal_sesak_dada']),
-        float(row['bmi']),
+        int(row['bmi']),
         int(row['sistolik']), int(row['diastolik']),
     ]])
     pred = int(model.predict(features)[0])
@@ -470,12 +470,12 @@ def api_patient_detail(patient_id):
     return jsonify({
         'id': int(row['id']),
         'no_rm': row['no_rm'],
-        'usia': round(float(row['usia']), 1),
+        'usia': int(row['usia']),
         'gender': int(row['gender']),
         'gender_label': 'Perempuan' if row['gender'] == 1
                         else 'Laki-laki',
         'sesak_dada': int(row['keluhanawal_sesak_dada']),
-        'bmi': round(float(row['bmi']), 2),
+        'bmi': int(row['bmi']),
         'sistolik': int(row['sistolik']),
         'diastolik': int(row['diastolik']),
         'risiko_aktual': int(row['risiko_jantung']),
@@ -565,10 +565,10 @@ def api_export_csv():
     writer.writerow(cols)
     for _, row in df.iterrows():
         writer.writerow([
-            row['no_rm'], round(float(row['usia']), 1),
+            row['no_rm'], int(row['usia']),
             'Perempuan' if row['gender'] == 1 else 'Laki-laki',
             'Ya' if row['keluhanawal_sesak_dada'] == 1 else 'Tidak',
-            round(float(row['bmi']), 2), int(row['sistolik']),
+            int(row['bmi']), int(row['sistolik']),
             int(row['diastolik']),
             'Risiko' if row['risiko_jantung'] == 1 else 'Normal',
         ])
@@ -593,7 +593,7 @@ def api_patient_search():
     for _, row in filtered.head(limit).iterrows():
         results.append({
             'id': int(row['id']), 'no_rm': row['no_rm'],
-            'usia': round(float(row['usia']), 1),
+            'usia': int(row['usia']),
             'gender_label': 'Perempuan' if row['gender'] == 1 else 'Laki-laki',
             'risiko_label': 'Risiko' if row['risiko_jantung'] == 1 else 'Normal',
         })
@@ -610,10 +610,10 @@ def api_predict():
 
     try:
         features = np.array([[
-            float(data['usia']),
+            int(data['usia']),
             int(data['gender']),
             int(data['sesak']),
-            float(data['bmi']),
+            int(data['bmi']),
             int(data['sistolik']),
             int(data['diastolik']),
         ]])

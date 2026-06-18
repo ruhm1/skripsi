@@ -31,52 +31,52 @@ STRUKTUR POHON
 
 METRIK EVALUASI (TEST SET)
 -----------------------------------------------------------------
-  Accuracy          : 0.6589 (65.89%)
-  Precision         : 0.2425 (24.25%)
-  Recall            : 0.7983 (79.83%)
-  F1-Score          : 0.3719 (37.19%)
-  ROC-AUC           : 0.7927
-  Specificity       : 0.6387 (63.87%)
+  Accuracy          : 0.6387 (63.87%)
+  Precision         : 0.2417 (24.17%)
+  Recall            : 0.8679 (86.79%)
+  F1-Score          : 0.3781 (37.81%)
+  ROC-AUC           : 0.7914
+  Specificity       : 0.6056 (60.56%)
 
 CONFUSION MATRIX
 -----------------------------------------------------------------
                     Prediksi Tidak  Prediksi Risiko
-  Aktual Tidak   :  TN =  3,104     FP =  1,756
-  Aktual Risiko  :  FN =    142     TP =    562
+  Aktual Tidak   :  TN =  2,943     FP =  1,917
+  Aktual Risiko  :  FN =     93     TP =    611
 
 CLASSIFICATION REPORT
 -----------------------------------------------------------------
                     precision    recall  f1-score   support
 
-  Tidak Risiko (0)       0.96      0.64      0.77      4860
-Risiko Jantung (1)       0.24      0.80      0.37       704
+  Tidak Risiko (0)       0.97      0.61      0.75      4860
+Risiko Jantung (1)       0.24      0.87      0.38       704
 
-          accuracy                           0.66      5564
-         macro avg       0.60      0.72      0.57      5564
-      weighted avg       0.87      0.66      0.72      5564
+          accuracy                           0.64      5564
+         macro avg       0.61      0.74      0.56      5564
+      weighted avg       0.88      0.64      0.70      5564
 
 
 CROSS-VALIDATION (10-FOLD STRATIFIED)
 -----------------------------------------------------------------
-  F1 per fold       : ['0.3778', '0.3756', '0.3689', '0.3697', '0.3719', '0.3681', '0.3628', '0.3672', '0.3545', '0.3892']
-  F1 mean ± std     : 0.3706 ± 0.0088
-  Accuracy mean ± std: 0.6415 ± 0.0192
+  F1 per fold       : ['0.3810', '0.3670', '0.3787', '0.3672', '0.3636', '0.3565', '0.3678', '0.3705', '0.3644', '0.3928']
+  F1 mean ± std     : 0.3710 ± 0.0099
+  Accuracy mean ± std: 0.6383 ± 0.0158
 
 OVERFITTING CHECK
 -----------------------------------------------------------------
-  Training accuracy : 0.6611
-  Testing accuracy  : 0.6589
-  Gap               : 0.0022
+  Training accuracy : 0.6254
+  Testing accuracy  : 0.6387
+  Gap               : 0.0134
   Status            : OK — Tidak overfitting
 
 FEATURE IMPORTANCE
 -----------------------------------------------------------------
-  Usia (tahun)        : 0.6110  ########################
-  BMI (kg/m²)         : 0.1280  #####
-  Sistolik (mmHg)     : 0.1234  ####
-  Gender              : 0.0779  ###
-  Diastolik (mmHg)    : 0.0506  ##
-  Sesak/Nyeri Dada    : 0.0091  
+  Usia (tahun)        : 0.5988  #######################
+  Sistolik (mmHg)     : 0.1394  #####
+  BMI (kg/m²)         : 0.1120  ####
+  Gender              : 0.0786  ###
+  Diastolik (mmHg)    : 0.0628  ##
+  Sesak/Nyeri Dada    : 0.0084  
 
 FILE OUTPUT
 -----------------------------------------------------------------

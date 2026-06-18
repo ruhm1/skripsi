@@ -13,7 +13,7 @@ OUTPUT
   File     : dataset_cleaned.csv
   Baris    : 27817
   Kolom    : 7 (6 fitur + 1 target)
-  Ukuran   : 697.8 KB
+  Ukuran   : 540.5 KB
 
 -----------------------------------------------------------------
 KOLOM YANG DI-DROP (SESUAI RUANG LINGKUP SKRIPSI)
@@ -64,8 +64,8 @@ STRUKTUR OUTPUT (SESUAI BAB 1 SKRIPSI)
 -----------------------------------------------------------------
 STATISTIK DESKRIPTIF
 -----------------------------------------------------------------
-  bmi         : min=    0.62  max=   99.13  mean=   24.13  median=   23.43  stdev=    5.60
-  usia        : min=    0.00  max=   92.15  mean=   46.47  median=   50.48  stdev=   19.93
+  bmi         : min=    1.00  max=   99.00  mean=   24.12  median=   23.00  stdev=    5.61
+  usia        : min=    0.00  max=   92.00  mean=   46.46  median=   50.00  stdev=   19.92
   sistolik    : min=   58.00  max=  288.00  mean=  125.60  median=  123.00  stdev=   21.53
   diastolik   : min=    0.00  max=  183.00  mean=   80.28  median=   80.00  stdev=   12.06
 
@@ -93,16 +93,16 @@ DISTRIBUSI GENDER
 PREVIEW 10 BARIS PERTAMA
 -----------------------------------------------------------------
      usia  gdr sesak     bmi  sist diast risiko
-    55.33    1     0   28.65   132    78      0
-    59.91    0     0   16.60   154    83      0
-    47.25    0     0   24.63   124    86      0
-    42.87    0     0   21.97   132    78      0
-    74.19    0     0   22.14   152    57      0
-    60.42    1     0   20.44   209   102      0
-    45.97    0     0   23.87   154    92      0
-    52.50    1     0   17.82   175    91      0
-    56.81    0     0   19.86   188   111      0
-    56.46    1     0   15.39   166    69      0
+    55.00    1     0   29.00   132    78      0
+    60.00    0     0   17.00   154    83      0
+    47.00    0     0   25.00   124    86      0
+    43.00    0     0   22.00   132    78      0
+    74.00    0     0   22.00   152    57      0
+    60.00    1     0   20.00   209   102      0
+    46.00    0     0   24.00   154    92      0
+    52.00    1     0   18.00   175    91      0
+    57.00    0     0   20.00   188   111      0
+    56.00    1     0   15.00   166    69      0
 
 =================================================================
 Preprocessing v2 selesai. Dataset siap untuk pemodelan
