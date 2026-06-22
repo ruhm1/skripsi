@@ -1,28 +1,42 @@
-# Skripsi Project
+# CARDIOCARE — SPK Deteksi Dini Risiko Penyakit Jantung
 
-Proyek ini adalah bagian dari aplikasi Skripsi, dengan menggunakan React + Vite untuk frontend.
+Sistem Pendukung Keputusan (SPK) untuk deteksi dini risiko penyakit jantung menggunakan algoritma Decision Tree berbasis web. Dibangun dengan data rekam medis riil dari RSU Aulia (27.817 pasien).
+
+## Akun Default
+
+| Role | Username | Password | Hak Akses |
+|------|----------|----------|----------|
+| Owner | `owner` | `owner123` | Full access + CRUD akun dokter |
+| Dokter | `dokter` | `dokter123` | Semua fitur kecuali CRUD akun dokter |
 
 ## Persiapan Lingkungan (Setup)
 
-Ikuti langkah-langkah di bawah ini untuk menjalankan proyek ini di mesin lokal Anda:
+### 1. Instalasi Python
+Pastikan Python 3.x sudah terinstal beserta package berikut:
+```bash
+pip install flask scikit-learn pandas numpy matplotlib
+```
 
-### 1. Instalasi Node.js
-Pastikan Anda telah menginstal [Node.js](https://nodejs.org/) di sistem Anda.
+### 2. Instalasi Node.js
+Pastikan [Node.js](https://nodejs.org/) sudah terinstal untuk frontend.
 
-### 2. Instalasi Dependensi
-Buka terminal, arahkan ke folder `frontend`, lalu jalankan perintah berikut untuk menginstal semua package yang dibutuhkan:
+### 3. Instalasi Dependensi Frontend
 ```bash
 cd frontend
 npm install
 ```
 
-### 3. Menjalankan Aplikasi
-Setelah proses instalasi selesai, jalankan server pengembangan (development server) dengan perintah:
+### 4. Menjalankan Aplikasi
 ```bash
-npm run dev
+python app.py
 ```
 
-Aplikasi akan berjalan secara lokal. Anda dapat membuka URL yang tertera di terminal pada browser Anda.
+Aplikasi akan berjalan di http://localhost:5000
 
 ## Struktur Direktori
-- `frontend/`: Berisi kode sumber untuk antarmuka pengguna (React + Vite).
+- `app.py` — Backend server (Flask REST API)
+- `preprocess.py` — Preprocessing dataset mentah
+- `train_model.py` — Training model Decision Tree
+- `dataset/` — Dataset CSV (mentah dan cleaned)
+- `model/` — Model terlatih dan artefak evaluasi
+- `frontend/` — Frontend (React + Vite)

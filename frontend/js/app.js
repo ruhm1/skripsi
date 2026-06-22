@@ -717,8 +717,8 @@ function selectRadio(el, name) {
 function initPrediksiForm() {
   document.getElementById('prediksiForm').addEventListener('submit', async (e) => {
     e.preventDefault();
-    const usia = parseFloat(document.getElementById('inputUsia').value);
-    const bmi = parseFloat(document.getElementById('inputBmi').value);
+    const usia = parseInt(document.getElementById('inputUsia').value);
+    const bmi = parseInt(document.getElementById('inputBmi').value);
     const sistolik = parseInt(document.getElementById('inputSistolik').value);
     const diastolik = parseInt(document.getElementById('inputDiastolik').value);
     const genderEl = document.querySelector('input[name="gender"]:checked');

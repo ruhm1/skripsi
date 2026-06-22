@@ -11,3 +11,9 @@
 .kiro/
 .opencode/
 .trae/
+
+# Dependencies
+node_modules/
+
+# Docs and Diagrams
+docs/
