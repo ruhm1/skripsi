@@ -16,32 +16,30 @@ TABEL PERBANDINGAN MODEL
 ----------------------------------------------------------------------
 Model                          Accuracy     Prec   Recall       F1      AUC
 ----------------------------------------------------------------------
-Decision Tree (Baseline)         0.6589   0.2425   0.7983   0.3719   0.7927
-Decision Tree (Tuned)            0.6411   0.2413   0.8565   0.3765   0.7812
-Random Forest                    0.7063   0.2749   0.8068   0.4101   0.8232 <-- BEST
-Gradient Boosting                0.8719   0.4609   0.0753   0.1294   0.8284
+Decision Tree (Baseline)         0.6387   0.2417   0.8679   0.3781   0.7914 <-- BEST
+Decision Tree (Tuned)            0.6423   0.2414   0.8523   0.3762   0.7838
+Random Forest                    0.6984   0.2696   0.8097   0.4045   0.8182
+Gradient Boosting                0.8711   0.4343   0.0611   0.1071   0.8095
 
 
 ANALISIS
 ----------------------------------------------------------------------
-  Model terbaik          : Random Forest
-  Recall tertinggi       : Decision Tree (Tuned) (0.8565)
-  ROC-AUC tertinggi      : Gradient Boosting (0.8284)
-  F1-Score tertinggi     : Random Forest (0.4101)
-  Paling stabil (CV)     : Decision Tree (Baseline) (std=0.0192)
-  Paling sedikit overfit : Decision Tree (Baseline) (gap=0.0022)
+  Model terbaik          : Decision Tree (Baseline)
+  Recall tertinggi       : Decision Tree (Baseline) (0.8679)
+  ROC-AUC tertinggi      : Random Forest (0.8182)
+  F1-Score tertinggi     : Random Forest (0.4045)
+  Paling stabil (CV)     : Decision Tree (Tuned) (std=0.0168)
+  Paling sedikit overfit : Random Forest (gap=0.0056)
 
 
 REKOMENDASI UNTUK SKRIPSI
 ----------------------------------------------------------------------
   Prioritas: Recall tertinggi (deteksi dini = minimalisir FN)
 
-  >> Model terbaik secara metrik: Random Forest
-     NAMUN: Decision Tree direkomendasikan untuk skripsi karena:
-     1. Explainability: aturan if-then mudah dipahami dokter
-     2. White-box model: transparan untuk sidang skripsi
-     3. Sesuai BAB 1 skripsi yang menyebutkan Decision Tree
-     4. Recall DT baseline: 0.7983 (sudah memadai)
+  >> REKOMENDASI: Gunakan Decision Tree (Baseline)
+     Alasan: Recall tertinggi + explainability (white-box model)
+     Decision Tree mudah dijelaskan dalam sidang skripsi,
+     aturan if-then transparan untuk tenaga medis.
 
 
 ======================================================================

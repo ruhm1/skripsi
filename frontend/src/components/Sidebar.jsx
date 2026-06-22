@@ -1,4 +1,3 @@
-import React from 'react';
 import { Activity, ShieldCheck, HeartPulse, LayoutDashboard, Settings, History } from 'lucide-react';
 import { motion } from 'framer-motion';
 
@@ -50,12 +49,12 @@ export default function Sidebar() {
           <div>
             <div className="flex justify-between text-sm mb-1">
               <span className="text-slate-200">Akurasi</span>
-              <span className="text-cyan-neon font-bold">93.44%</span>
+              <span className="text-cyan-neon font-bold">63.87%</span>
             </div>
             <div className="w-full bg-medical-blue-900/50 rounded-full h-1.5 border border-medical-blue-700">
               <motion.div 
                 initial={{ width: 0 }}
-                animate={{ width: '93.44%' }}
+                animate={{ width: '63.87%' }}
                 transition={{ duration: 1.5, delay: 0.5 }}
                 className="bg-cyan-neon h-1.5 rounded-full shadow-[0_0_8px_rgba(0,240,255,0.8)]"
               ></motion.div>
@@ -65,12 +64,12 @@ export default function Sidebar() {
           <div>
             <div className="flex justify-between text-sm mb-1">
               <span className="text-slate-200">Presisi</span>
-              <span className="text-cyan-neon/80 font-bold">91.20%</span>
+              <span className="text-cyan-neon/80 font-bold">24.17%</span>
             </div>
             <div className="w-full bg-medical-blue-900/50 rounded-full h-1.5 border border-medical-blue-700">
               <motion.div 
                 initial={{ width: 0 }}
-                animate={{ width: '91.20%' }}
+                animate={{ width: '24.17%' }}
                 transition={{ duration: 1.5, delay: 0.7 }}
                 className="bg-cyan-neon/80 h-1.5 rounded-full"
               ></motion.div>
@@ -80,12 +79,12 @@ export default function Sidebar() {
           <div>
             <div className="flex justify-between text-sm mb-1">
               <span className="text-slate-200">Recall</span>
-              <span className="text-cyan-neon/80 font-bold">94.10%</span>
+              <span className="text-cyan-neon/80 font-bold">86.79%</span>
             </div>
             <div className="w-full bg-medical-blue-900/50 rounded-full h-1.5 border border-medical-blue-700">
               <motion.div 
                 initial={{ width: 0 }}
-                animate={{ width: '94.10%' }}
+                animate={{ width: '86.79%' }}
                 transition={{ duration: 1.5, delay: 0.9 }}
                 className="bg-cyan-neon/80 h-1.5 rounded-full"
               ></motion.div>
