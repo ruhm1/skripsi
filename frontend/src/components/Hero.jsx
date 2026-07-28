@@ -10,8 +10,8 @@ export default function Hero() {
             <Stethoscope className="w-4 h-4" />
             <span>Sistem Pendukung Keputusan Klinis</span>
           </div>
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Deteksi Dini Penyakit Jantung
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 leading-tight">
+            Sistem Pendukung Keputusan <br className="hidden md:block" /> Deteksi Dini Penyakit Jantung
           </h2>
           <p className="text-medical-blue-200 text-lg leading-relaxed">
             Selamat datang, Tenaga Medis RSU Aulia. Sistem ini menggunakan algoritma <span className="font-semibold text-cyan-neon">Decision Tree</span> untuk menganalisis parameter klinis pasien dan memberikan rekomendasi tingkat risiko penyakit jantung secara real-time.
