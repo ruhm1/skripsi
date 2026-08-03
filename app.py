@@ -6,17 +6,17 @@ Menyajikan data riil dari dataset_cleaned.csv (27.817 pasien)
 + Authentication (Owner & Dokter) dengan session
 
 Endpoints:
-  POST /api/login          → Login (username + password)
-  POST /api/logout         → Logout
-  GET  /api/auth/me        → Current user info
-  GET  /api/doctors        → List dokter (owner only)
-  POST /api/doctors        → Create dokter (owner only)
-  PUT  /api/doctors/<id>   → Update dokter (owner only)
-  DELETE /api/doctors/<id> → Delete dokter (owner only)
-  GET  /api/stats          → Statistik dashboard
-  GET  /api/patients       → Data pasien (paginated)
-  GET  /api/patients/<id>  → Detail pasien + prediksi
-  POST /api/predict        → Prediksi risiko jantung
+  POST /api/login          -> Login (username + password)
+  POST /api/logout         -> Logout
+  GET  /api/auth/me        -> Current user info
+  GET  /api/doctors        -> List dokter (owner only)
+  POST /api/doctors        -> Create dokter (owner only)
+  PUT  /api/doctors/<id>   -> Update dokter (owner only)
+  DELETE /api/doctors/<id> -> Delete dokter (owner only)
+  GET  /api/stats          -> Statistik dashboard
+  GET  /api/patients       -> Data pasien (paginated)
+  GET  /api/patients/<id>  -> Detail pasien + prediksi
+  POST /api/predict        -> Prediksi risiko jantung
 """
 
 import os
@@ -669,7 +669,7 @@ if __name__ == '__main__':
     print("  URL     : http://localhost:5000")
     print()
     print("  Default Accounts:")
-    print("    Owner  → username: owner   password: owner123")
-    print("    Dokter → username: dokter  password: dokter123")
+    print("    Owner  -> username: owner   password: owner123")
+    print("    Dokter -> username: dokter  password: dokter123")
     print("=" * 60)
     app.run(debug=False, port=5000)
